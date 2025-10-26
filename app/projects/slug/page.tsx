@@ -6,7 +6,7 @@ export default function ProjectDetail() {
         <>
             <div className="px-6 flex flex-col gap-4">
                 <div>
-                    <time>December 2025</time>
+                    <time dateTime="2025-12">December 2025</time>
                 </div>
                 <div className="flex justify-between">
                     <div className="flex-1/2">
@@ -35,9 +35,9 @@ export default function ProjectDetail() {
             <div className="w-full h-dvh bg-[url(/images/about-design-img-1.webp)] bg-center bg-cover"></div>
             {/* 기능 설명 반복 됨 */}
             <div className="grid grid-cols-12 items-center px-6">
-                <div className="col-start-1 col-span-5 aspect-[2/3] relative">
+                <figure className="col-start-1 col-span-5 aspect-[2/3] relative">
                     <Image className="object-cover rounded-2xl" src="/images/about-design-img-6.webp" alt="프로젝트 주요 기능" fill/>
-                </div>
+                </figure>
                 <div className="col-start-7 col-span-3">
                     <div className="flex flex-col gap-8 tracking-tight">
                         <ul>
@@ -66,32 +66,32 @@ export default function ProjectDetail() {
             </div>
             <div className="flex flex-col gap-6">
                 <div className="w-full flex overflow-hidden flex-nowrap justify-center items-end gap-6">
-                    <div className="w-[20vw] aspect-[3/2] relative flex-shrink-0">
+                    <figure className="w-[20vw] aspect-[3/2] relative flex-shrink-0">
                         <Image className=" object-cover rounded-2xl" src="/images/about-design-img-2.webp" alt="프로젝트 이미지" fill/>
-                    </div>
-                    <div className="w-[30vw] aspect-[3/2] relative flex-shrink-0">
+                    </figure>
+                    <figure className="w-[30vw] aspect-[3/2] relative flex-shrink-0">
                         <Image className=" object-cover rounded-2xl" src="/images/about-design-img-2.webp" alt="프로젝트 이미지" fill/>
-                    </div>
-                    <div className="w-[40vw] aspect-[3/2] relative flex-shrink-0">
+                    </figure>
+                    <figure className="w-[40vw] aspect-[3/2] relative flex-shrink-0">
                         <Image className=" object-cover rounded-2xl" src="/images/about-design-img-2.webp" alt="프로젝트 이미지" fill/>
-                    </div>
-                    <div className="w-[20vw] aspect-[3/2] relative flex-shrink-0">
+                    </figure>
+                    <figure className="w-[20vw] aspect-[3/2] relative flex-shrink-0">
                         <Image className=" object-cover rounded-2xl" src="/images/about-design-img-2.webp" alt="프로젝트 이미지" fill/>
-                    </div>
+                    </figure>
                 </div>
                 <div className="w-full flex overflow-hidden flex-nowrap justify-end items-start gap-6">
-                    <div className="w-[20vw] aspect-[3/2] relative flex-shrink-0">
+                    <figure className="w-[20vw] aspect-[3/2] relative flex-shrink-0">
                         <Image className=" object-cover rounded-2xl" src="/images/about-design-img-2.webp" alt="프로젝트 이미지" fill/>
-                    </div>
-                    <div className="w-[30vw] aspect-[3/2] relative flex-shrink-0">
+                    </figure>
+                    <figure className="w-[30vw] aspect-[3/2] relative flex-shrink-0">
                         <Image className=" object-cover rounded-2xl" src="/images/about-design-img-2.webp" alt="프로젝트 이미지" fill/>
-                    </div>
-                    <div className="w-[40vw] aspect-[3/2] relative flex-shrink-0">
+                    </figure>
+                    <figure className="w-[40vw] aspect-[3/2] relative flex-shrink-0">
                         <Image className=" object-cover rounded-2xl" src="/images/about-design-img-2.webp" alt="프로젝트 이미지" fill/>
-                    </div>
-                    <div className="w-[20vw] aspect-[3/2] relative flex-shrink-0">
+                    </figure>
+                    <figure className="w-[20vw] aspect-[3/2] relative flex-shrink-0">
                         <Image className=" object-cover rounded-2xl" src="/images/about-design-img-2.webp" alt="프로젝트 이미지" fill/>
-                    </div>
+                    </figure>
                 </div>
             </div>
         </>

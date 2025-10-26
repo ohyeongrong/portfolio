@@ -8,14 +8,18 @@
   --color-primary-dark: #121212;
 
   /* 그레이 스케일 */
+  --color-gray-900: #242424;
   --color-gray-700: #54595F;
   --color-gray-500: #9B9B9B;
   --color-gray-200: #DCDCDC;
-
 }
 
 body {
   background: var(--color-background);
   font-family: var(--font-bricolage), var(--font-pretendard), sans-serif;
   color: var(--color-primary-dark);
+}
+
+a, button {
+  cursor: pointer;
 }
