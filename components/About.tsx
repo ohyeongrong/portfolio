@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import TextLink from './ui/TextLink';
+import ScrollDown from './ui/ScrollDown';
+
 
 const WORK_IMAGES_DATA = [
     { 
@@ -8,7 +10,8 @@ const WORK_IMAGES_DATA = [
         alt: "첫 번째 디자인 작업물", 
         aspect: "aspect-[3/2]",
         span: "col-span-3", 
-        start: "col-start-2" 
+        start: "col-start-2",
+        self: "self-center" 
     },
     { 
         id: 2, 
@@ -16,7 +19,8 @@ const WORK_IMAGES_DATA = [
         alt: "두 번째 디자인 작업물", 
         aspect: "aspect-[2/3]", 
         span: "col-span-3", 
-        end: "col-end-12" 
+        end: "col-end-12",
+        self: "self-center" 
     },
     { 
         id: 3, 
@@ -32,7 +36,8 @@ const WORK_IMAGES_DATA = [
         alt: "네 번째 디자인 작업물", 
         aspect: "aspect-[3/2]", 
         span: "col-span-4", 
-        start: "col-start-1" 
+        start: "col-start-1",
+        self: "self-end" 
     },
     { 
         id: 5, 
@@ -40,7 +45,8 @@ const WORK_IMAGES_DATA = [
         alt: "다섯 번째 디자인 작업물", 
         aspect: "aspect-[3/2]", 
         span: "col-span-3", 
-        end: "col-end-13" 
+        end: "col-end-13",
+        self: "self-end" 
     },
     { 
         id: 6, 
@@ -55,12 +61,12 @@ const WORK_IMAGES_DATA = [
 export default function About() {
     return (
             <section>
-                <div className="w-full bg-[var(--color-primary-dark)] text-white py-6 rounded-[64px] h-fit">
+                <div className="w-full bg-[var(--color-primary-dark)] text-white pt-4 rounded-[64px] h-fit">
                     <div className="flex flex-col items-center">
                         <h2 className="sr-only">about</h2>
-                        <TextLink content='Scroll Down'/>
+                        <ScrollDown/>
                         {/* 아래 문구는 애니메이션 효과를 넣어야할거같아서 div로 묶음 */}
-                        <div className="text-[6vw] tracking-tight leading-none text-center flex flex-col gap-8 py-6  text-[var(--color-gray-700)]">
+                        <div className="text-[6vw] tracking-tight leading-none text-center flex flex-col gap-8 py-32  text-[var(--color-gray-700)] font-semibold">
                             <div>
                             다양한 디자인 프로젝트를
                             </div>
@@ -78,10 +84,10 @@ export default function About() {
                             </div>
                         </div>
                         {/* 그동안 내가 한 디자인 작업물 이미지 영역*/}
-                        <div className="w-full grid grid-cols-12 gap-y-30">
+                        <div className="w-full grid grid-cols-12 gap-y-48 pb-32">
                             {
                                 WORK_IMAGES_DATA.map(work => 
-                                    <div key={work.id} className={`${work.span} ${work.aspect} relative ${work.start || ''} ${work.end || ''}`}>
+                                    <div key={work.id} className={`${work.span} ${work.aspect} relative ${work.start || ''} ${work.end || ''} ${work.self || ''}`}>
                                         <Image 
                                             className="object-cover rounded-2xl"
                                             src={work.src} 

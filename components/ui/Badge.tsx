@@ -6,7 +6,7 @@ import Icon from "./Icon";
         black: 'bg-[var(--color-primary-dark)] text-white',
         darkGray: 'bg-[var(--color-gray-900)] text-white',
         gray: 'bg-[var(--color-gray-200)]',
-        white: 'border border-[var(--color-primary-dark)]',
+        white: 'border border-[var(--color-primary-dark)] bg-white',
     }
 
     const STYLE_SIZE = {
@@ -23,6 +23,7 @@ import Icon from "./Icon";
         size?: string;
         content: string;
         rounded?: boolean;
+        className?: string;
         iconName?: IconName;
         iconSize?: number;
         iconClassName?: string;
@@ -33,10 +34,11 @@ export default function Badge({
     content, 
     color='black', 
     size='lg', 
-    rounded=true, 
+    rounded=true,
+    className,
     iconName,
     iconSize, 
-    iconClassName 
+    iconClassName
 }: BadgeProps) {
 
     const selectedColor = STYLE_COLOR[color] || '';
@@ -51,7 +53,8 @@ export default function Badge({
                 ${selectedSize} 
                 flex items-center w-fit h-fit 
                 ${rounded ? 'rounded-full' : ''} 
-                ${hasTextAndIcon ? 'gap-1' : ''}`}>
+                ${hasTextAndIcon ? 'gap-1' : ''}
+                ${className}`}>
                     { content && <span>{ content }</span> }
                     {showIcon && (
                         <Icon 

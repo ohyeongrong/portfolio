@@ -22,13 +22,15 @@ export default function TextLink({
     const hasTextAndIcon = content && showIcon;
 
     return (
-        <span className={`border-b ${className} ${hasTextAndIcon ? 'gap-1' : ''}` }>
+        <span className={`border-b flex items-center cursor-pointer ${className} ${hasTextAndIcon ? 'gap-1' : ''}` }>
             {content}
-            <Icon 
-                name={iconName} 
-                size={iconSize} 
-                className={iconClassName} 
-            />
+            {showIcon && (
+                <Icon 
+                    name={iconName} 
+                    size={iconSize} 
+                    className={iconClassName} 
+                />
+            )}
         </span>
     )
 }

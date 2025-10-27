@@ -18,10 +18,21 @@ const bricolage = Bricolage_Grotesque({
 });
 
 const pretendard = localFont({
-  src: '../public/fonts/Pretendard-Regular.woff2',
+  src: [
+    {
+      path: '../public/fonts/Pretendard-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Pretendard-SemiBold.woff2',
+      weight: '600',
+      style: 'normal',
+    },
+  ],
   display: 'swap',
   variable: '--font-pretendard',
-})
+});
 
 export default function RootLayout({
   children,
