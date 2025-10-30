@@ -84,23 +84,23 @@ export default function StackTool() {
 
     return (
         <section>
-            <div className="px-6 py-32">
-                <h2 className="text-5xl tracking-tight">Stack & Tool</h2>
-                <div className="flex justify-between pt-16">
-                    {/* tool 뱃지들 예를들어 javaScript, HTML 등 이런 요소를 matter.js이용해서 위에서 떨어지게 대신 드래그 드롭은 안할거야  */}
+            <div className="px-6 py-16 md:py-24 lg:py-32">
+                <h2 className="text-[clamp(2.25rem,2.1rem+0.75vw,3rem)] tracking-tight leading-none">Stack & Tool</h2>
+                <div className="flex flex-col lg:flex-row justify-between pt-16 gap-16">
+                    {/* 뱃지 matter 적용 부분 */}
                     <div className="flex-1/2 relative">
                         <h3 className="sr-only">Tool List</h3>
                         <MatterVisual 
-                                createBodies={createEllipseBodies} // 👈 이 함수를 전달!
-                                isMouseControlEnabled={false}      // 👈 마우스 기능 끄기
+                                createBodies={createEllipseBodies}
+                                isMouseControlEnabled={false}
                             />
                     </div>
                     {/* tool & stack의 설명 부분 */}
                     <div className="flex-1/2 tracking-tight">
                         {
                             STACK_DATA.map(stack => 
-                                <dl key={stack.category} className="flex items-center gap-6 border-b py-10 relative">
-                                    <dt className="flex-2/5 text-6xl">{stack.category}</dt>
+                                <dl key={stack.category} className="flex flex-col xl:flex-row xl:items-center gap-[clamp(0.5rem,0.3rem+1vw,1.5rem)] border-b border-[var(--color-gray-200)] py-[clamp(2rem,1.8rem+1vw,3rem)] relative">
+                                    <dt className="flex-2/5 text-[clamp(3rem,2.85rem+0.75vw,3.75rem)] leading-none">{stack.category}</dt>
                                     {/* 마우스 오버 시 나오는건데 이거 나중에 따로 컴포넌트 분리하던가??  */}
                                     <div className=" absolute flex flex-col">
                                         {
@@ -124,13 +124,13 @@ export default function StackTool() {
                                             })
                                         }
                                     </div>
-                                    <dd className="flex-3/5 text-lg text-[var(--color-gray-500)]">{stack.description}</dd>
+                                    <dd className="flex-3/5 text-[clamp(1rem,0.975rem+0.125vw,1.125rem)] text-[var(--color-gray-500)]">{stack.description}</dd>
                                 </dl>
                             )
                         }
                     </div>
                 </div>
-                {/* 의미없는 그냥 장식 하단에서 크게 오른쪽에서 왼쪽으로 흐르는 */}
+                {/* 하단 흐르는 텍스트 */}
                 <MarqueeText/>
             </div>
         </section>

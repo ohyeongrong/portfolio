@@ -6,7 +6,7 @@ export default function MarqueeText() {
     
     return (
         <div className={styles.marqueeContainer}>
-            <div className={`${styles.marqueeContent} text-[17vw] tracking-tighter leading-none`}>
+            <div className={`${styles.marqueeContent} text-[clamp(6rem,3.4rem+13vw,19rem)] tracking-tighter leading-none`}>
                 <span>{`${textContent} ${textContent}`}</span>
                 <span>{`${textContent} ${textContent}`}</span>
                 <span>{`${textContent} ${textContent}`}</span>

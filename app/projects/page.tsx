@@ -42,7 +42,7 @@ export default function Projects(){
                         spaceBetween: 24,
                         },
                         1024: {
-                        slidesPerView: 3,
+                        slidesPerView: 4,
                         spaceBetween: 16,
                         },
                         768: {
@@ -54,8 +54,8 @@ export default function Projects(){
                         spaceBetween: 8,
                         },
                         0: {
-                        slidesPerView: 1,
-                        spaceBetween: 0,
+                        slidesPerView: 2,
+                        spaceBetween: 4,
                         },
                     }}
                 >
@@ -91,7 +91,7 @@ export default function Projects(){
                         <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="#121212"><path d="M402.09-77.91 0-480l402.09-402.09L488.18-796l-316 316 316 316-86.09 86.09Z"/></svg> 
                         <span>Prev</span>
                     </div>
-                    <div className="custom-pagination flex items-center justify-center gap-4 cursor-pointer"></div> 
+                    <div className="hidden custom-pagination flex items-center justify-center gap-4 cursor-pointer"></div> 
                     <div className="custom-next cursor-pointer flex items-center gap-6">
                         <span>Next</span>
                         <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="#121212"><path d="M288-77.91 201.91-164l316-316-316-316L288-882.09 690.09-480 288-77.91Z"/></svg>

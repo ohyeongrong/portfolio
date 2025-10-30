@@ -3,7 +3,7 @@ import Badge from "./Badge"
 export default function ProjectBadgeList({categories, tools}) {
     return (
             <>
-                <ul className="flex items-center gap-0.5">
+                <ul className="flex flex-wrap items-center gap-0.5">
                     {
                         categories.map(category =>
                             <li key={category}>
@@ -12,7 +12,7 @@ export default function ProjectBadgeList({categories, tools}) {
                         )
                     }
                 </ul>
-                <ul className="flex items-center gap-0.5">
+                <ul className="flex flex-wrap items-center gap-0.5">
                     {
                         tools.map(tool =>
                             <li key={tool}>

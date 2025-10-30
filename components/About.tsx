@@ -17,7 +17,7 @@ const WORK_IMAGES_DATA = [
         id: 2, 
         src: "/images/about-design-img-2.webp", 
         alt: "두 번째 디자인 작업물", 
-        aspect: "aspect-[2/3]", 
+        aspect: "aspect-[3/2] sm:aspect-[2/3]", 
         span: "md:col-span-3 sm:col-span-2", 
         end: "lg:col-end-12 md:col-end-9 sm:col-end-7",
         self: "self-center" 
@@ -52,7 +52,7 @@ const WORK_IMAGES_DATA = [
         id: 6, 
         src: "/images/about-design-img-6.webp", 
         alt: "여섯 번째 디자인 작업물", 
-        aspect: "aspect-[2/3]", 
+        aspect: "aspect-[3/2] sm:aspect-[2/3]", 
         span: "lg:col-span-4 md:col-span-3", 
         start: "lg:col-start-6 md:col-start-3 sm:col-start-3" 
     },
@@ -86,7 +86,7 @@ export default function About() {
                             결과물을 개발합니다.
                             </div>
                         </div>
-                        {/* 그동안 내가 한 디자인 작업물 이미지 영역*/}
+                        {/* 지난 디자인 작업물 이미지 영역*/}
                         <div className="w-full grid grid-cols-1 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-y-12 sm:gap-y-24 md:gap-y-32 lg:gap-y-48 pb-32">
                             {
                                 WORK_IMAGES_DATA.map(work => 
