@@ -7,10 +7,12 @@ import { Mousewheel, Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-creative';
+import { PROJECT_DATA } from "@/constants/PROJECT_DATA";
+import Badge from "@/components/ui/Badge";
+import ProjectBadgeList from "@/components/ui/ProjectBadgeList";
 
 export default function Projects(){
 
-    const test = Array(12).fill(0);
     return (
         <section className="h-dvh py-[10vh]">
             <div className="h-[80vh]">
@@ -58,26 +60,23 @@ export default function Projects(){
                     }}
                 >
                     {
-                        test.map((a, i) => 
+                        PROJECT_DATA.map((project, i) => 
                             <SwiperSlide 
-                                key={a + i}
+                                key={project.id + i}
                                 className="!flex !items-center !justify-center"
                             >
-                                <article className="w-full relative" aria-label="1/10">
-                                    <Link href='/projects/slug' aria-label="Project title 상세 페이지로 이동">
+                                <article className="w-full relative" aria-label={`${i}/${PROJECT_DATA.length}`}>
+                                    <Link href={`/projects/${ project.id }`} aria-label={`${ project.title } 상세 페이지로 이동`}>
                                         <div className="flex flex-col justify-between items-center w-full h-full">
                                             <div className="absolute z-10 top-2 mix-blend-difference">
-                                                <h3 className="text-xl text-white ">Project title</h3>
+                                                <h3 className="text-xl text-white ">{ project.title }</h3>
                                             </div>
-                                            <div className="absolute z-20 bottom-3">
-                                                <ul className="flex items-center gap-1">
-                                                    <li className="text-xs py-0.5 px-2 bg-[var(--color-primary-dark)] text-white w-fit h-fit">Development</li>
-                                                    <li className="border text-xs py-0.5 px-2 rounded-full w-fit h-fit bg-white">JavaScript</li>
-                                                </ul>
+                                            <div className="absolute z-20 bottom-3 right-4 left-4">
+                                                <ProjectBadgeList categories={project.categories} tools={project.tools}/>
                                             </div>
                                         </div>
                                         <div className={`relative max-h-[80vh] aspect-[5/8] ${i % 2 === 0 ? 'w-full' : 'w-16/20'} mx-auto`}>
-                                            <Image className="object-cover rounded-2xl" src="/images/about-design-img-1.webp" alt="최근 작업물" fill/>
+                                            <Image className="object-cover rounded-2xl" src={project.thumbnail} alt={`${project.title} 썸네일`} fill/>
                                         </div>
                                     </Link>
                                 </article>

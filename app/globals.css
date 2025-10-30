@@ -18,6 +18,7 @@ body {
   background: var(--color-background);
   font-family: var(--font-bricolage), var(--font-pretendard), sans-serif;
   color: var(--color-primary-dark);
+  letter-spacing: -0.025em;
 }
 
 a, button {

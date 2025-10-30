@@ -1,5 +1,6 @@
 import MarqueeText from "./MarqueeText";
 import Badge from "./ui/Badge";
+import MatterVisual, { createEllipseBodies } from "./ui/MatterVisual";
 
 
 export const STACK_DATA = [
@@ -87,18 +88,12 @@ export default function StackTool() {
                 <h2 className="text-5xl tracking-tight">Stack & Tool</h2>
                 <div className="flex justify-between pt-16">
                     {/* tool 뱃지들 예를들어 javaScript, HTML 등 이런 요소를 matter.js이용해서 위에서 떨어지게 대신 드래그 드롭은 안할거야  */}
-                    <div className="flex-1/2">
+                    <div className="flex-1/2 relative">
                         <h3 className="sr-only">Tool List</h3>
-                        <ul className="text-xl">
-                            {
-                                STACK_DATA.flatMap(category => category.tools)
-                                .map(tool => 
-                                    <li key={tool.id}>
-                                        <Badge content={tool.content} color={tool.color}/>
-                                    </li>
-                                )
-                            }
-                        </ul>
+                        <MatterVisual 
+                                createBodies={createEllipseBodies} // 👈 이 함수를 전달!
+                                isMouseControlEnabled={false}      // 👈 마우스 기능 끄기
+                            />
                     </div>
                     {/* tool & stack의 설명 부분 */}
                     <div className="flex-1/2 tracking-tight">

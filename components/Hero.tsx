@@ -1,3 +1,5 @@
+
+import MatterVisual from "./ui/MatterVisual"
 import Badge from "./ui/Badge"
 
 
@@ -13,24 +15,15 @@ const SKILL_BADGE = [
 
 export default function Hero() {
     return (
-        <section className="h-[95vh]">
+        <section className="h-[95vh] w-dvw">
             <h2 className="sr-only">hero</h2>
             {/*  matter.js 이용해서 위에서 요소들이 떨어지게 할거임 드래그 드롭도 가능 */}
-            <div className="flex flex-col h-full justify-end">
-                <div className="flex flex-col items-center justify-center w-full h-[50vh]">
-                    <h3 className="sr-only">Skill</h3>
-                    <ul>
-                        {
-                            SKILL_BADGE.map(badge =>
-                                <li key={badge.id}>
-                                    <Badge content={badge.content} color={badge.color} size={badge.size} iconName={badge.iconName} iconSize={badge.iconSize}/>
-                                </li>
-                            )
-                        }
-                    </ul>
+            <div className="w-full h-full flex flex-col justify-end">
+                <div className="w-full h-full relative">
+                    <MatterVisual />
                 </div>
-                <div aria-hidden="true" className="flex overflow-hidden justify-between items-center text-center text-[17vw] tracking-tighter leading-none">
-                    <div className="flex-1">Oh!</div>
+                <div aria-hidden="true" className="flex overflow-hidden justify-between items-center text-center w-full text-[17vw] tracking-tighter leading-none">
+                    <div className="flex-1 ">Oh!</div>
                     <div className="flex-1 text-transparent [-webkit-text-stroke:1px_black]">Oh!</div>
                     <div className="flex-1">Oh!</div>
                     <div className="flex-1 text-transparent [-webkit-text-stroke:1px_black]">Oh!</div>

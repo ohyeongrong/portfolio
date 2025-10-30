@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from 'next/image';
 import Badge from "./ui/Badge";
 import { PROJECT_DATA } from "@/constants/PROJECT_DATA";
+import ProjectBadgeList from "./ui/ProjectBadgeList";
 
 
 const GRID_CLASSES = [
@@ -45,24 +46,7 @@ export default function LatestProjects() {
                                                 <h3 className="text-xl">{project.title}</h3>
                                                 {/* 카테고리 및 사용 툴 뱃지 */}
                                                 <div className="flex items-center gap-0.5">
-                                                    <ul className="flex items-center gap-0.5">
-                                                        {
-                                                            project.categories.map(category =>
-                                                                <li key={category}>
-                                                                    <Badge content={ category } size="xs" rounded={false}/>
-                                                                </li>
-                                                            )
-                                                        }
-                                                    </ul>
-                                                    <ul className="flex items-center gap-0.5">
-                                                        {
-                                                            project.tools.map(tool =>
-                                                                <li key={tool}>
-                                                                    <Badge content={tool} size="xs" color="white"/>
-                                                                </li>
-                                                            )
-                                                        }
-                                                    </ul>
+                                                    <ProjectBadgeList categories={project.categories} tools={project.tools}/>
                                                 </div>
                                             </div>
                                         </Link>
