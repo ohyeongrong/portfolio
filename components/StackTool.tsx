@@ -88,7 +88,7 @@ export default function StackTool() {
                 <div className="px-6">
                     <h2 className="text-[clamp(2.25rem,2.1rem+0.75vw,3rem)] tracking-tight leading-none">Stack & Tool</h2>
                 </div>
-                <div className="flex flex-col lg:flex-row justify-between pt-16 lg:gap-16">
+                <div className="flex flex-col lg:flex-row justify-between pt-16 lg:gap-16 h-fit">
                     {/* 뱃지 matter 적용 부분 */}
                     <div className="w-full lg:w-1/2 relative h-[70vh] sm:h-[60vh] md:h-[50vh] lg:h-auto">
                         <h3 className="sr-only">Tool List</h3>
