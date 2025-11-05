@@ -84,11 +84,13 @@ export default function StackTool() {
 
     return (
         <section>
-            <div className="px-6 py-16 md:py-24 lg:py-32">
-                <h2 className="text-[clamp(2.25rem,2.1rem+0.75vw,3rem)] tracking-tight leading-none">Stack & Tool</h2>
-                <div className="flex flex-col lg:flex-row justify-between pt-16 gap-16">
+            <div className="py-16 md:py-24 lg:py-32">
+                <div className="px-6">
+                    <h2 className="text-[clamp(2.25rem,2.1rem+0.75vw,3rem)] tracking-tight leading-none">Stack & Tool</h2>
+                </div>
+                <div className="flex flex-col lg:flex-row justify-between pt-16 lg:gap-16">
                     {/* 뱃지 matter 적용 부분 */}
-                    <div className="flex-1/2 relative">
+                    <div className="w-full lg:w-1/2 relative h-[70vh] sm:h-[60vh] md:h-[50vh] lg:h-auto">
                         <h3 className="sr-only">Tool List</h3>
                         <MatterVisual 
                                 createBodies={createEllipseBodies}
@@ -96,7 +98,7 @@ export default function StackTool() {
                             />
                     </div>
                     {/* tool & stack의 설명 부분 */}
-                    <div className="flex-1/2 tracking-tight">
+                    <div className="w-full lg:w-1/2 tracking-tight px-6">
                         {
                             STACK_DATA.map(stack => 
                                 <dl key={stack.category} className="flex flex-col xl:flex-row xl:items-center gap-[clamp(0.5rem,0.3rem+1vw,1.5rem)] border-b border-[var(--color-gray-200)] py-[clamp(2rem,1.8rem+1vw,3rem)] relative">
@@ -131,7 +133,9 @@ export default function StackTool() {
                     </div>
                 </div>
                 {/* 하단 흐르는 텍스트 */}
-                <MarqueeText/>
+                <div className="px-6">
+                    <MarqueeText/>
+                </div>
             </div>
         </section>
     )
