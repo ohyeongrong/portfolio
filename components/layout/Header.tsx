@@ -1,8 +1,12 @@
 import Link from "next/link";
 import CurrentTime from "../ui/CurrentTime";
-
+import HoverRevealText from "../utility/HoverRevealText";
 
 export default function Header() {
+
+    const HEADER_NAV_LIST = [
+        {menu: 'Projects', href: '/projects'},
+    ]
 
     return (
         <header className="fixed z-100 inset-0 mix-blend-difference text-white max-h-14 w-dvw">
@@ -13,22 +17,25 @@ export default function Header() {
                 <div>
                     <h1>
                         <Link href="/"> 
-                        ©2025  Oh! YeongRong
+                            <HoverRevealText hoverContent='©2025 Oh! YeongRong'>
+                                ©2025 Oh! YeongRong
+                            </HoverRevealText>
                         </Link>
                     </h1>
                 </div>
                 <nav>
                     <ul className="flex gap-6">
-                        <li>
-                            <Link href="/projects">
-                                Projects
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/">
-                                Archive
-                            </Link>
-                        </li>
+                        {
+                            HEADER_NAV_LIST.map((list, i)=>
+                                <li key={list.menu + i}>
+                                    <Link href={list.href}>
+                                        <HoverRevealText hoverContent={list.menu}>
+                                            {list.menu}
+                                        </HoverRevealText>
+                                    </Link>
+                                </li>
+                            )
+                        }
                     </ul>
                 </nav>
             </div>

@@ -1,6 +1,5 @@
 import Image from 'next/image';
-import TextLink from './ui/TextLink';
-import ScrollDown from './ui/ScrollDown';
+import ScrollDown from '../ui/ScrollDown';
 
 
 const WORK_IMAGES_DATA = [

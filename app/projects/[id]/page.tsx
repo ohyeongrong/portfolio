@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import TextLink from "@/components/ui/TextLink";
 import ProjectBadgeList from "@/components/ui/ProjectBadgeList";
 import Badge from "@/components/ui/Badge";
-
+import HoverRevealText from "@/components/utility/HoverRevealText";
 
 
 export default function ProjectDetail({ params }) {
@@ -26,6 +26,9 @@ export default function ProjectDetail({ params }) {
     const firstRow = galleryData.slice(0, 4);
     const secondRow = galleryData.slice(4, 8);
 
+    const gitHub = <TextLink content="GitHub" iconName="arrowOutward" iconSize={18}/>
+    const webSite = <TextLink content="WebSite" iconName="arrowOutward" iconSize={18}/>
+
     return (
         <section className="pt-50 lg:py-60">
             <div className="px-6 flex flex-col gap-4 pb-16">
@@ -45,10 +48,14 @@ export default function ProjectDetail({ params }) {
                         </div>
                         <div className="flex-1/3 flex justify-end gap-2">
                             <Link href={ project.githubUrl }>
-                                <TextLink content="GitHub" iconName="arrowOutward" iconSize={18}/>
+                                <HoverRevealText hoverContent={gitHub}>
+                                    {gitHub}
+                                </HoverRevealText>
                             </Link>
                             <Link href={ project.websiteUrl }>
-                                <TextLink content="WebSite" iconName="arrowOutward" iconSize={18}/>
+                                <HoverRevealText hoverContent={webSite}>
+                                    {webSite}
+                                </HoverRevealText>
                             </Link>
                         </div>
                     </div>

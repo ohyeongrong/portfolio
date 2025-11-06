@@ -7,6 +7,7 @@ import Icon from "./Icon";
         darkGray: 'bg-[var(--color-gray-900)] text-white',
         gray: 'bg-[var(--color-gray-200)]',
         white: 'border border-[var(--color-primary-dark)] bg-white',
+        transparent: 'bg-transparent',
     }
 
     const STYLE_SIZE = {

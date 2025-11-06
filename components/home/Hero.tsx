@@ -1,5 +1,5 @@
 
-import MatterVisual from "./ui/MatterVisual"
+import MatterVisual from "../ui/MatterVisual"
 import Badge from "./ui/Badge"
 
 

@@ -1,7 +1,7 @@
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import StackTool from "@/components/StackTool";
-import LatestProjects from "@/components/LatestProjects";
+import Hero from "@/components/home/Hero";
+import About from "@/components/home/About";
+import StackTool from "@/components/home/StackTool/StackTool";
+import LatestProjects from "@/components/home/LatestProjects/LatestProjects";
 
 export default function Home() {
   return (

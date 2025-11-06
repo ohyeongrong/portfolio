@@ -1,8 +1,12 @@
 import ScrollToTop from "../ui/ScrollToTop";
 import TextLink from "../ui/TextLink";
+import HoverRevealText from "../utility/HoverRevealText";
+
 
 
 export default function Footer() {
+
+    const mailTextLink = <TextLink content="dhdudfhd920@gmail.com" iconName="arrowOutward" iconSize={20}/>
 
     return (      
             <footer>
@@ -43,10 +47,12 @@ export default function Footer() {
                             </div>
                         </div>
                         <div className="flex justify-between items-center px-6 text-[clamp(1rem,0.95rem+0.25vw,1.25rem)] pt-6">
-                            <p  className="hidden sm:block">©2025 Oh! YeongRong</p>
+                            <p className="hidden sm:block">©2025 Oh! YeongRong</p>
                             <a href="mailto:dhdudfhd920@gmailcom">
-                                <TextLink content="dhdudfhd920@gmail.com" iconName="arrowOutward" iconSize={20}/>
-                            </a>
+                                <HoverRevealText hoverContent={mailTextLink}>
+                                    {mailTextLink}
+                                </HoverRevealText>
+                                </a>
                             {/* 버튼 컴포넌트 만든거 넣으면 됨 */}
                             <ScrollToTop/>
                         </div>
