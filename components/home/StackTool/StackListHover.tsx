@@ -2,9 +2,9 @@
 
 import useMousePosition from '@/components/hooks/useMousePosition';
 import Badge from '@/components/ui/Badge';
-import HoverRevealText from '@/components/utility/HoverRevealText';
 import { motion, AnimatePresence} from 'framer-motion';
 import { useState } from 'react';
+import { useCursorContext } from '@/context/CursorContext';
 
 const containerVariants = {
     visible: {
@@ -16,9 +16,9 @@ const containerVariants = {
 };
 
 const badgeItemVariants = {
-    initial: { opacity: 0, x: -40, rotate: 0 },
-    visible: { opacity: 1, x: 0, rotate: 2 },
-    exit: { opacity: 0, x: 40 },
+    initial: { opacity: 0, scale: 0, x: -40, rotate: 0 },
+    visible: { opacity: 1, scale: 1, x: 0, rotate: 2 },
+    exit: { opacity: 0, scale: 0,  x: 40 },
 };
 
 const dtDefaultColor = 'var(--color-primary-dark)'; 
@@ -32,6 +32,8 @@ export default function StackListHover({ stack, hoveredCategory, setHoveredCateg
     const { springX, springY } = useMousePosition();
 
     const [isBadgeVisible, setIsBadgeVisible] = useState(false);
+
+    const { setCursorType } = useCursorContext();
 
     const badgeGroups = (tools) => {
         const groups = [];
@@ -61,11 +63,13 @@ export default function StackListHover({ stack, hoveredCategory, setHoveredCateg
     function handleMouseEnter() {
         setIsBadgeVisible(true)
         setHoveredCategory(stack.category)
+        setCursorType('hidden');
     }
 
     function handleMouseLeave() {
         setIsBadgeVisible(false)
         setHoveredCategory(null)
+        setCursorType('default');
     }
 
     const isSelfHovered = hoveredCategory === stack.category;
@@ -106,11 +110,14 @@ export default function StackListHover({ stack, hoveredCategory, setHoveredCateg
                                 initial='initial'
                                 animate='visible'
                                 exit='exit'
+                                transition={{ type: "spring", stiffness: 600, damping: 20 }}
                                 style={{ 
                                     x: springX, 
                                     y: springY,
+                                    translateX: "-50%",
+                                    translateY: "-50%",
                                 }}
-                                className="fixed inset-0 z-50 flex flex-col pointer-events-none"
+                                className="fixed top-0 left-0 z-50 flex flex-col pointer-events-none"
                             >
                                 {
                                     badgeGroups(stack.tools).map((tool, i)=>{

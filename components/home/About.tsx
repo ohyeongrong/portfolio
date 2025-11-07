@@ -59,13 +59,14 @@ const WORK_IMAGES_DATA = [
 
 export default function About() {
     return (
-            <section className='w-dvw'>
+            <section className='w-dvw relative'>
                 <div className="w-full bg-[var(--color-primary-dark)] text-white pt-4 rounded-[6vw] h-fit">
                     <div className="flex flex-col items-center">
                         <h2 className="sr-only">about</h2>
                         <ScrollDown/>
                         {/* 아래 문구는 애니메이션 효과를 넣어야할거같아서 div로 묶음 */}
                         <div className="
+                            sticky top-0 z-10
                             text-[clamp(2rem,0.8rem+6vw,8rem)] tracking-tight leading-none text-center text-[var(--color-gray-700)] font-semibold
                             flex flex-col gap-4 sm:gap-6 md:gap-7 lg:gap-8 py-16 md:py-24 lg:py-32
                         ">

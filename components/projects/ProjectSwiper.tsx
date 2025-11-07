@@ -10,12 +10,25 @@ import { PROJECT_DATA } from "@/constants/PROJECT_DATA";
 import ProjectSlideItem from "./ProjectSlideItem";
 import { useState } from "react";
 import ViewHover from "../ui/ViewHover";
+import { useCursorContext } from '@/context/CursorContext';
 
 
 
 export default function ProjectSwiper(){
 
     const [isHovered, setIsHovered] = useState(false);
+
+     const { setCursorType } = useCursorContext();
+
+    function handleMouseEnter() {
+        setIsHovered(true)
+        setCursorType('hidden');
+    }
+
+    function handleMouseLeave() {
+        setIsHovered(false)
+        setCursorType('default');
+    }
 
     return (
         <Swiper 
@@ -65,8 +78,8 @@ export default function ProjectSwiper(){
                     <SwiperSlide 
                         key={project.id + i}
                         className="!flex !items-center !justify-center"
-                        onMouseEnter={() => setIsHovered(true)}
-                        onMouseLeave={() => setIsHovered(false)}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
                     >
                         <ProjectSlideItem project={project} i={i}/>
                     </SwiperSlide>

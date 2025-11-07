@@ -10,6 +10,8 @@ import { PROJECT_DATA } from "@/constants/PROJECT_DATA";
 import ProjectBadgeList from "../../ui/ProjectBadgeList";
 import ViewHover from '@/components/ui/ViewHover';
 
+import { useCursorContext } from '@/context/CursorContext';
+
 
 const GRID_CLASSES = [
     "lg:col-span-5 md:col-span-4 sm:col-span-3 sm:col-start-1", 
@@ -38,19 +40,31 @@ export default function LatestList() {
 
     const [isHovered, setIsHovered] = useState(false);
 
+    const { setCursorType } = useCursorContext();
+
+    function handleMouseEnter() {
+        setIsHovered(true)
+        setCursorType('hidden');
+    }
+
+    function handleMouseLeave() {
+        setIsHovered(false)
+        setCursorType('default');
+    }
+
     return (
         <ul className="grid grid-cols-1 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-y-[clamp(4rem,2.4rem+8vw,12rem)] sm:items-end">
             {
                 latestProjects.map((project, i) => {
                     return(
                         <motion.li
-                            onMouseEnter={() => setIsHovered(true)}
-                            onMouseLeave={() => setIsHovered(false)}
+                            onMouseEnter={handleMouseEnter}
+                            onMouseLeave={handleMouseLeave}
                             key={project.id + i} 
                             className={GRID_CLASSES[i]}
                         >
                             <article className="w-full">
-                                <Link href={project.id} className='cursor-none'>
+                                <Link href={`/projects/${project.id}`} className='cursor-none'>
                                     <div  className="relative aspect-[3/2] overflow-hidden rounded-2xl">
                                         <MotionImage 
                                             variants={imgVariants}

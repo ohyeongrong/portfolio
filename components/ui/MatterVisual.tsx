@@ -305,7 +305,10 @@ const MatterVisual = ({
     return (
             <div
                 ref={sceneRef}
-                className="absolute inset-0 z-0"
+                className={`
+                    absolute inset-0 z-0
+                    ${isMouseControlEnabled ? 'cursor-grab active:cursor-grabbing' : 'cursor-default'}
+                `}
             />
     );
 };

@@ -9,7 +9,7 @@
 
 .marqueeContent {
     white-space: nowrap;
-    animation: marquee 250s linear infinite;
+    animation: marquee 50s linear infinite;
     width: max-content;
 }
 

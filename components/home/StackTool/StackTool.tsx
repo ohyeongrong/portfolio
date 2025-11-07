@@ -25,7 +25,14 @@ export default function StackTool() {
                 </div>
                 {/* 하단 흐르는 텍스트 */}
                 <div className="px-6">
-                    <MarqueeText/>
+                    <MarqueeText textContent={
+                        <>
+                            <span>©2025 Oh! YeongRong</span>
+                            <span>©2025 Oh! YeongRong</span>
+                            <span>©2025 Oh! YeongRong</span>
+                            <span>©2025 Oh! YeongRong</span>
+                        </>
+                    }/>
                 </div>
             </div>
         </section>

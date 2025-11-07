@@ -8,7 +8,7 @@ import Badge from "@/components/ui/Badge";
 import HoverRevealText from "@/components/utility/HoverRevealText";
 
 
-export default function ProjectDetail({ params }) {
+export default async function ProjectDetail({ params }) {
 
     const projectId = params.id;
 
@@ -128,7 +128,7 @@ export default function ProjectDetail({ params }) {
                         );
 
                         return (
-                            <div key={feat.id} className="grid grid-cols-1 md:grid-cols-12 items-center px-6 gap-y-8 py-16">
+                            <div key={feat.id + i} className="grid grid-cols-1 md:grid-cols-12 items-center px-6 gap-y-8 py-16">
                                 {ImageBlock}
                                 {ContentBlock}
                             </div>

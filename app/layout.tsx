@@ -4,6 +4,9 @@ import { Bricolage_Grotesque } from 'next/font/google';
 import localFont from 'next/font/local'
 import Header from '../components/layout/Header'
 import Footer from "@/components/layout/Footer";
+import CircleCursor from "@/components/ui/CircleCursor";
+import { CursorProvider } from '@/context/CursorContext';
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -42,11 +45,14 @@ export default function RootLayout({
   return (
     <html lang="ko" className={`${bricolage.variable} ${pretendard.variable}`}>
       <body>
-        <Header/>
-        <main>
-          {children}
-        </main>
-        <Footer/>
+        <CursorProvider>
+            <CircleCursor />
+            <Header/>
+            <main>
+              {children}
+            </main>
+            <Footer/>
+        </CursorProvider>
       </body>
     </html>
   );
