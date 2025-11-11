@@ -3,6 +3,7 @@ import { PROJECT_DATA } from "@/constants/PROJECT_DATA";
 import HoverFillBtn from "../../ui/HoverFillBtn";
 import LatestList from "./LatestList";
 import Link from "next/link";
+import SectionTitle from "@/components/ui/SectionTitle";
 
 
 
@@ -25,10 +26,11 @@ export default function LatestProjects() {
     const latestProjects = PROJECT_DATA.filter(p => p.isLatest).slice(0, latestCount);
 
     return (
-        <section>
+        <section className="panel">
             <div className="px-6 py-16 flex flex-col gap-16">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center justify-between">
-                    <h2 className="text-[clamp(2.25rem,2.1rem+0.75vw,3rem)] tracking-tight leading-none">Latest Projects</h2>
+                    <h2 className="sr-only">Latest Projects</h2>
+                    <SectionTitle text={'Latest Projects'}/>
                     <Link href='/projects'>
                         <HoverFillBtn 
                             content="View All"

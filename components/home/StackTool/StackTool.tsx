@@ -1,15 +1,18 @@
+import SectionTitle from "@/components/ui/SectionTitle";
 import MarqueeText from "../../ui/MarqueeText";
 import MatterVisual, { createEllipseBodies } from "../../ui/MatterVisual";
 import StackList from "./StackList";
 
 
+
 export default function StackTool() {
 
     return (
-        <section>
+        <section className="panel">
             <div className="py-16 md:py-24 lg:py-32">
                 <div className="px-6">
-                    <h2 className="text-[clamp(2.25rem,2.1rem+0.75vw,3rem)] tracking-tight leading-none">Stack & Tool</h2>
+                    <h2 className="sr-only">Stack & Tool</h2>
+                    <SectionTitle text='Stack & Tool'/>
                 </div>
                 <div className="flex flex-col lg:flex-row justify-between pt-16 lg:gap-16 h-fit">
                     {/* 뱃지 matter 적용 부분 */}

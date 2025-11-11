@@ -6,6 +6,9 @@ import Header from '../components/layout/Header'
 import Footer from "@/components/layout/Footer";
 import CircleCursor from "@/components/ui/CircleCursor";
 import { CursorProvider } from '@/context/CursorContext';
+import SmoothScrollWrapper from "@/components/layout/SmoothScrollWrapper";
+import ViewHover from "@/components/ui/ViewHover";
+import StackHoverDisplay from "@/components/home/StackTool/StackHoverDisplay";
 
 
 export const metadata: Metadata = {
@@ -45,14 +48,18 @@ export default function RootLayout({
   return (
     <html lang="ko" className={`${bricolage.variable} ${pretendard.variable}`}>
       <body>
-        <CursorProvider>
-            <CircleCursor />
-            <Header/>
-            <main>
-              {children}
-            </main>
-            <Footer/>
-        </CursorProvider>
+          <CursorProvider>
+              <CircleCursor />
+                  <Header/>
+                    <SmoothScrollWrapper>
+                      <main>
+                          {children}
+                      </main>
+                      <Footer/>
+                    </SmoothScrollWrapper>
+                <ViewHover/>
+                <StackHoverDisplay />
+          </CursorProvider>
       </body>
     </html>
   );

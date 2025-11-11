@@ -1,43 +1,44 @@
 'use client';
-
-import useMousePosition from '@/components/hooks/useMousePosition';
+import { motion, AnimatePresence, useMotionValueEvent } from 'framer-motion';
+import { useCursorContext } from '@/context/CursorContext';
 import Badge from '@/components/ui/Badge';
-import { motion, AnimatePresence, scale} from 'framer-motion';
+import { useState } from 'react';
 
-const badgeVariants = {
-    initial: { opacity: 0, scale: 0},
-    visible: { opacity: 1, scale: 1 },
-    exit: { opacity: 0, scale: 0 },
-};
+export default function ViewHover() {
+    const { cursorType, hoverPosition } = useCursorContext();
+    const [isView, setIsView] = useState(false);
 
+    const badgeVariants = {
+        initial: { opacity: 0, scale: 0, transition: { duration: 0.4 }},
+        visible: { opacity: 1, scale: 1, transition: { duration: 0.4 }},
+        exit: { opacity: 0, scale: 0.2, transition: { duration: 0.4 }},
+    };
 
-export default function ViewHover({ isHovered }) {
-
-    const { springX, springY } = useMousePosition();
+    // motionValue 변화 감지해서 React state로 동기화
+    useMotionValueEvent(cursorType, 'change', (v) => {
+        setIsView(v === 'view');
+    });
 
     return (
-            <AnimatePresence>
-                {
-                    isHovered && (
-                        <motion.div 
-                            initial='initial'
-                            animate='visible'
-                            exit='exit'
-                            transition={{ type: "spring", stiffness: 600, damping: 20 }}
-                            style={{ 
-                                x: springX, 
-                                y: springY,
-                                translateX: "-50%",
-                                translateY: "-50%",
-                            }}
-                            className="fixed top-0 left-0 z-50 pointer-events-none"
-                        >
-                            <motion.div variants={badgeVariants}>
-                                <Badge content='View' size='sm' iconName='arrowOutward' iconSize={20}/>
-                            </motion.div>
-                        </motion.div>
-                    )
-                }
-            </AnimatePresence>
-    )
+        <AnimatePresence>
+        {isView && (
+            <motion.div
+            variants={badgeVariants}
+            initial='initial'
+            animate='visible'
+            exit='exit'
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className="fixed top-0 left-0 z-[9999] pointer-events-none"
+            style={{
+                x: hoverPosition.x,
+                y: hoverPosition.y,
+                translateX: '-50%',
+                translateY: '-50%',
+            }}
+            >
+            <Badge content="View" size="sm" iconName="arrowOutward" iconSize={20} />
+            </motion.div>
+        )}
+        </AnimatePresence>
+    );
 }

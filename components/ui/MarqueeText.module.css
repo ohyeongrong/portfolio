@@ -1,16 +1,5 @@
-@keyframes marquee {
-    0% {
-        transform: translateX(0%); 
-    }
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
 .marqueeContent {
     white-space: nowrap;
-    animation: marquee 50s linear infinite;
-    width: max-content;
 }
 
 .marqueeContainer {

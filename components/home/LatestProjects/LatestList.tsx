@@ -1,16 +1,18 @@
 'use client';
 
-import useMousePosition from '@/components/hooks/useMousePosition';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Link from "next/link";
 import Image from 'next/image';
 import { PROJECT_DATA } from "@/constants/PROJECT_DATA";
 import ProjectBadgeList from "../../ui/ProjectBadgeList";
-import ViewHover from '@/components/ui/ViewHover';
 
 import { useCursorContext } from '@/context/CursorContext';
+
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
 
 const GRID_CLASSES = [
@@ -40,26 +42,58 @@ export default function LatestList() {
 
     const [isHovered, setIsHovered] = useState(false);
 
-    const { setCursorType } = useCursorContext();
+    const { setCursorType, setHoverPosition } = useCursorContext();
 
     function handleMouseEnter() {
-        setIsHovered(true)
-        setCursorType('hidden');
+        setCursorType('view'); // 보여줄 커서 타입
     }
 
     function handleMouseLeave() {
-        setIsHovered(false)
         setCursorType('default');
     }
 
+    function handleMouseMove(e) {
+        setHoverPosition({ x: e.clientX, y: e.clientY });
+    }
+
+    const latestListRef = useRef(null);
+
+    useEffect(() => {
+
+        const LatestItems = gsap.utils.toArray(latestListRef.current.children);
+
+        LatestItems.forEach(item => {
+            gsap.fromTo(
+            item,
+            { y: 50, scale: 0.9 },
+            {
+                y: 0,
+                scale: 1,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 80%",
+                    toggleActions: "play reverse play reverse",
+                    // markers: true,
+                },
+            }
+            );
+        });
+
+    }, []);
+
     return (
-        <ul className="grid grid-cols-1 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-y-[clamp(4rem,2.4rem+8vw,12rem)] sm:items-end">
+        <ul 
+        ref={latestListRef}
+        className="grid grid-cols-1 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-y-[clamp(4rem,2.4rem+8vw,12rem)] sm:items-end">
             {
                 latestProjects.map((project, i) => {
                     return(
                         <motion.li
                             onMouseEnter={handleMouseEnter}
                             onMouseLeave={handleMouseLeave}
+                            onMouseMove={handleMouseMove}
                             key={project.id + i} 
                             className={GRID_CLASSES[i]}
                         >
@@ -84,7 +118,6 @@ export default function LatestList() {
                                     </div>
                                 </Link>
                             </article>
-                            <ViewHover isHovered={isHovered}/>
                         </motion.li>
                     )
                 })

@@ -7,8 +7,14 @@ import ProjectBadgeList from "@/components/ui/ProjectBadgeList";
 import Badge from "@/components/ui/Badge";
 import HoverRevealText from "@/components/utility/HoverRevealText";
 
+type ProjectDetailProps = {
+    params: {
+        id: string;
+    };
+};
 
-export default async function ProjectDetail({ params }) {
+
+export default async function ProjectDetail({ params }: ProjectDetailProps) {
 
     const projectId = params.id;
 

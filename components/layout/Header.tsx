@@ -9,8 +9,8 @@ export default function Header() {
     ]
 
     return (
-        <header className="fixed z-100 inset-0 mix-blend-difference text-white max-h-14 w-dvw">
-            <div className="flex justify-between py-4 px-6 text-[clamp(1rem,0.95rem+0.25vw,1.25rem)] leading-none">
+        <header className="fixed z-100 inset-0 mix-blend-difference max-h-14 w-dvw">
+            <div className="flex justify-between py-4 px-6 text-[clamp(1rem,0.95rem+0.25vw,1.25rem)] leading-none  text-white">
                 <div className="hidden sm:block">
                     <CurrentTime/>
                 </div>

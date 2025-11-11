@@ -1,24 +1,39 @@
 'use client';
+import React, { createContext, useContext } from 'react';
+import { motionValue } from 'framer-motion';
 
-import React, { createContext, useContext, useState } from 'react';
+const cursorType = motionValue('default');
+const hoverX = motionValue(0);
+const hoverY = motionValue(0);
 
-// 1. Context 생성
 const CursorContext = createContext({
-  cursorType: 'default',
-  setCursorType: () => {},
+  cursorType,
+  hoverPosition: { x: hoverX, y: hoverY },
+  hoverData: null, 
+  setCursorType: (type) => cursorType.set(type),
+  setHoverPosition: ({ x, y }) => {
+    hoverX.set(x);
+    hoverY.set(y);
+  },
+  setHoverData: (data) => {},
 });
 
-// 2. Provider 컴포넌트 정의
 export const CursorProvider = ({ children }) => {
-  // 'default', 'hovered', 'hidden' 등 커서의 상태를 저장
-  const [cursorType, setCursorType] = useState('default');
 
-  return (
-    <CursorContext.Provider value={{ cursorType, setCursorType }}>
-      {children}
-    </CursorContext.Provider>
-  );
+  const [hoverData, setHoverData] = React.useState(null);
+
+  const value = {
+    cursorType,
+    hoverPosition: { x: hoverX, y: hoverY },
+    hoverData,
+    setCursorType: (type) => cursorType.set(type),
+    setHoverPosition: ({ x, y }) => {
+      hoverX.set(x);
+      hoverY.set(y);
+    },
+    setHoverData: (data) => setHoverData(data),
+  };
+  return <CursorContext.Provider value={value}>{children}</CursorContext.Provider>;
 };
 
-// 3. 커스텀 훅 정의 (사용 편의성)
 export const useCursorContext = () => useContext(CursorContext);

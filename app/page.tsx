@@ -1,5 +1,5 @@
 import Hero from "@/components/home/Hero";
-import About from "@/components/home/About";
+import About from "@/components/home/About/About";
 import StackTool from "@/components/home/StackTool/StackTool";
 import LatestProjects from "@/components/home/LatestProjects/LatestProjects";
 

@@ -30,10 +30,9 @@ const dimmedOpacity = 0.6;
 export default function StackListHover({ stack, hoveredCategory, setHoveredCategory }) {
 
     const { springX, springY } = useMousePosition();
+    const { setCursorType, setHoverData } = useCursorContext();
 
     const [isBadgeVisible, setIsBadgeVisible] = useState(false);
-
-    const { setCursorType } = useCursorContext();
 
     const badgeGroups = (tools) => {
         const groups = [];
@@ -60,16 +59,29 @@ export default function StackListHover({ stack, hoveredCategory, setHoveredCateg
         return groups;
     }
 
-    function handleMouseEnter() {
-        setIsBadgeVisible(true)
-        setHoveredCategory(stack.category)
+    function handleMouseEnter(e) {
+        setHoveredCategory(stack.category);
         setCursorType('hidden');
+
+        setHoverData({
+            id: stack.category,
+            x: e.clientX,
+            y: e.clientY,
+            badges: badgeGroups(stack.tools),
+            type: 'stack',
+        });
+        setIsBadgeVisible(true);
     }
 
     function handleMouseLeave() {
-        setIsBadgeVisible(false)
-        setHoveredCategory(null)
+        setHoveredCategory(null);
         setCursorType('default');
+        setHoverData(null);
+        setIsBadgeVisible(false);
+    }
+
+    function handleMouseMove(e) {
+        setHoverData(prev => prev ? { ...prev, x: e.clientX, y: e.clientY } : null);
     }
 
     const isSelfHovered = hoveredCategory === stack.category;
@@ -95,6 +107,7 @@ export default function StackListHover({ stack, hoveredCategory, setHoveredCateg
                 className="cursor-none flex flex-col xl:flex-row xl:items-center gap-[clamp(0.5rem,0.3rem+1vw,1.5rem)] border-b border-[var(--color-gray-200)] py-[clamp(2rem,1.8rem+1vw,3rem)] relative"
                 onMouseEnter={ handleMouseEnter }
                 onMouseLeave={ handleMouseLeave }
+                onMouseMove={handleMouseMove}
                 >
                     <motion.dt 
                         className="flex-2/5 text-[clamp(3rem,2.85rem+0.75vw,3.75rem)] leading-none"
@@ -102,51 +115,6 @@ export default function StackListHover({ stack, hoveredCategory, setHoveredCateg
                     >
                         { stack.category }
                     </motion.dt>
-                <AnimatePresence>
-                    {
-                        isBadgeVisible && (
-                            <motion.div 
-                                variants={containerVariants}
-                                initial='initial'
-                                animate='visible'
-                                exit='exit'
-                                transition={{ type: "spring", stiffness: 600, damping: 20 }}
-                                style={{ 
-                                    x: springX, 
-                                    y: springY,
-                                    translateX: "-50%",
-                                    translateY: "-50%",
-                                }}
-                                className="fixed top-0 left-0 z-50 flex flex-col pointer-events-none"
-                            >
-                                {
-                                    badgeGroups(stack.tools).map((tool, i)=>{
-                                        const first = i === 0;
-                                        const badgeClass = first
-                                        ? 'relative z-10 rotate-5 translate-x-5'
-                                        : '-rotate-15'
-                                        const badgeColor = first
-                                        ? 'gray'
-                                        : 'white'
-                                        
-                                        return(
-                                            <motion.div
-                                                key={tool.id}
-                                                variants={badgeItemVariants}
-                                            >
-                                                <Badge
-                                                content={tool.content}
-                                                color={badgeColor} 
-                                                size="sm" 
-                                                className={badgeClass}/>
-                                            </motion.div>
-                                        )
-                                    })
-                                }
-                            </motion.div>
-                        )
-                    }
-                </AnimatePresence>
                 <motion.dd 
                     className="flex-3/5 text-[clamp(1rem,0.975rem+0.125vw,1.125rem)]"
                     animate={ddColorAnimate}

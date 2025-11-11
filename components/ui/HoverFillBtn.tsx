@@ -1,8 +1,11 @@
 'use client';
 import { animate, motion } from 'framer-motion';
-import { useState } from 'react';
-import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
 import Icon from './Icon';
+
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
 
 export default function HoverFillBtn({ content, sizeClassName, iconName, iconSize, iconClassName, initialTextColor, hoverTextColor, initialBgColor, hoverBgColor }) {
@@ -31,8 +34,16 @@ export default function HoverFillBtn({ content, sizeClassName, iconName, iconSiz
     const showIcon = !!iconName;
     const hasTextAndIcon = content && showIcon;
 
+    const buttonRef = useRef(null); // ref 생성
+
+    // 마운트 시 애니메이션 적용
+    useEffect(() => {
+        gsap.from(buttonRef.current, { opacity: 0, duration: 0.5 });
+    }, []);
+
     return (
-        <motion.div 
+        <motion.div
+            ref={buttonRef}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             className={`relative inline-block overflow-hidden rounded-full bg-[${initialBgColor}]`}

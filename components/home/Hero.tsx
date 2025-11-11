@@ -1,32 +1,43 @@
+'use client'
 
+import { useEffect, useRef } from "react";
 import MarqueeText from "../ui/MarqueeText"
 import MatterVisual from "../ui/MatterVisual"
-import Badge from "./ui/Badge"
-
-
-
-const SKILL_BADGE = [
-    { id: 'skill1', content: 'Development', color: 'black', size: 'xl'},
-    { id: 'skill2', content: 'UX UI Design', color: 'white', size: 'xl'},
-    { id: 'skill3', content: 'Planning', color: 'gray', size: 'xl'},
-    { id: 'skill4', content: '', iconName: 'smile', iconSize: 55, color: 'gray', size: 'none'},
-    { id: 'skill5', content: '', iconName: 'arrowOutward', iconSize: 55, color: 'black', size: 'none'},
-    { id: 'skill6', content: '', iconName: 'asterisk', iconSize: 55, color: 'white', size: 'none'},
-]
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 
 export default function Hero() {
+
+    const heroRef = useRef(null);
+
+    useEffect(() => {
+        ScrollTrigger.create({
+            trigger: heroRef.current,
+            start: "top top",
+            end: "bottom top",   // 고정되는 구간 길이 (스크롤 거리)
+            pin: true,       // 고정
+            pinSpacing: false, // 밑에 공간 안 남기고 바로 다음 섹션이 올라오게
+            // markers: true, // 테스트용 표시
+        });
+    }, []);
+
     return (
-        <section className="h-[95vh] w-dvw">
+        <section ref={heroRef} className="panel h-dvh w-dvw">
             <h2 className="sr-only">hero</h2>
             <div className="w-full h-full flex flex-col">
-                {/*  matter.js 이용함 위에서 요소들 떨어지고 드래그 드롭도 가능 */}
                 <div className="w-full h-full flex-1 relative">
                     <MatterVisual />
                 </div>
-
                 <MarqueeText textContent={
                     <>
+                        <span>Oh!</span>
+                        <span className="text-transparent [-webkit-text-stroke:1px_black]">Oh!</span>
+                        <span>Oh!</span>
+                        <span className="text-transparent [-webkit-text-stroke:1px_black]">Oh!</span>
+                        <span>Oh!</span>
+                        <span className="text-transparent [-webkit-text-stroke:1px_black]">Oh!</span>
                         <span>Oh!</span>
                         <span className="text-transparent [-webkit-text-stroke:1px_black]">Oh!</span>
                         <span>Oh!</span>
