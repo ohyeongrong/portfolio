@@ -14,6 +14,10 @@ export default function MarqueeText({ textContent }) {
 
     useEffect(() => {
         // 1. 등장 애니메이션 (오른쪽에서 나타남) 정의
+        if (!marqueeTextRef.current || !marqueeContentRef.current) {
+            // ref가 null이면 애니메이션 로직을 실행하지 않고 종료합니다.
+            return; 
+        }
         const fadeIn = gsap.fromTo(
             marqueeTextRef.current, // 텍스트 컨테이너
             { 

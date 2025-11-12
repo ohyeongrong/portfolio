@@ -30,8 +30,8 @@ const WORK_IMAGES_DATA = [
         src: "/images/about-design-img-3.webp", 
         alt: "세 번째 디자인 작업물", 
         aspect: "aspect-[3/2]", 
-        span: "md:col-span-3 sm:col-span-2", 
-        start: "lg:col-start-6 md:col-start-4 sm:col-start-3" 
+        span: "md:col-span-4 sm:col-span-3", 
+        start: "lg:col-start-6 md:col-start-4 sm:col-start-3" ,
     },
     { 
         id: 4, 
@@ -56,8 +56,8 @@ const WORK_IMAGES_DATA = [
         src: "/images/about-design-img-6.webp", 
         alt: "여섯 번째 디자인 작업물", 
         aspect: "aspect-[3/2] sm:aspect-[2/3]", 
-        span: "lg:col-span-4 md:col-span-3", 
-        start: "lg:col-start-6 md:col-start-3 sm:col-start-3" 
+        span: "md:col-span-4 sm:col-span-3", 
+        start: "lg:col-start-6 md:col-start-4 sm:col-start-3"
     },
 ];
 
@@ -73,14 +73,15 @@ export default function AnimatedImg() {
         workImgItems.forEach((item, i) => {
             gsap.fromTo(
             item,
-            { y: 20 },
+            { opacity: 0, y: 100 },
             {
                 y: 0,
+                opacity: 1,
                 duration: 1,
                 ease: "power3.out",
                 scrollTrigger: {
                     trigger: item,
-                    start: "top 80%",
+                    start: "top 90%",
                     toggleActions: "play reverse play reverse",
                     // markers: true,
                 },

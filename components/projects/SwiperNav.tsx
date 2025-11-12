@@ -6,8 +6,14 @@ import 'swiper/css/pagination';
 import 'swiper/css/effect-creative';
 import HoverRevealText from '../utility/HoverRevealText';
 
+import { motion } from 'framer-motion';
 
 export default function SwiperNav(){
+
+    const swiperNavVariants = {
+        initial: { opacity: 0, transition: { ease: 'easeInOut', duration: 0.6 }},
+        visible: { opacity: 1, transition: { ease: 'easeInOut' ,duration: 0.6 }},
+    };
 
     const prev = (
         <div className='flex items-center gap-6'>
@@ -23,7 +29,11 @@ export default function SwiperNav(){
             )
 
     return (
-        <div className="fixed z-40 bottom-4 px-6 w-full">
+        <motion.div
+            variants={swiperNavVariants}
+            initial='initial'
+            animate='visible'
+            className="fixed z-40 bottom-4 px-6 w-full">
             <div className="w-full flex items-center justify-between"> 
                 <div className="custom-prev cursor-pointer">
                     <HoverRevealText hoverContent={prev}>
@@ -37,6 +47,6 @@ export default function SwiperNav(){
                     </HoverRevealText>
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }

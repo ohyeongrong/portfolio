@@ -40,8 +40,6 @@ export default function LatestList() {
     const latestCount = 5;
     const latestProjects = PROJECT_DATA.filter(p => p.isLatest).slice(0, latestCount);
 
-    const [isHovered, setIsHovered] = useState(false);
-
     const { setCursorType, setHoverPosition } = useCursorContext();
 
     function handleMouseEnter() {

@@ -9,6 +9,7 @@ import { CursorProvider } from '@/context/CursorContext';
 import SmoothScrollWrapper from "@/components/layout/SmoothScrollWrapper";
 import ViewHover from "@/components/ui/ViewHover";
 import StackHoverDisplay from "@/components/home/StackTool/StackHoverDisplay";
+import ScrollConditionalWrapper from "@/components/layout/ScrollConditionalWrapper";
 
 
 export const metadata: Metadata = {
@@ -51,12 +52,11 @@ export default function RootLayout({
           <CursorProvider>
               <CircleCursor />
                   <Header/>
-                    <SmoothScrollWrapper>
+                    <ScrollConditionalWrapper>
                       <main>
                           {children}
                       </main>
-                      <Footer/>
-                    </SmoothScrollWrapper>
+                    </ScrollConditionalWrapper>
                 <ViewHover/>
                 <StackHoverDisplay />
           </CursorProvider>

@@ -18,10 +18,10 @@ const TEXT_LINES = [
     '결과물을 개발합니다.',
 ];
 
-export default function AnimatedText() {
+export default function AnimatedText({aboutRef}) {
 
     const textRef = useRef(null);
-    const ctx = useRef(null); // GSAP Context 참조
+    const ctx = useRef(null);
 
     useIsomorphicLayoutEffect(() => {
         ctx.current = gsap.context(() => {
@@ -33,8 +33,9 @@ export default function AnimatedText() {
                     trigger: textRef.current,
                     start: 'top 10%',
                     end: '+=300%',
-                    pin: true,          
-                    scrub: 0.5,   
+                    pin: true,       
+                    scrub: 1,   
+                    markers: true
                 },
             });
 
@@ -43,7 +44,7 @@ export default function AnimatedText() {
                 { clipPath: 'inset(0% 100% 0% 0%)' }, 
                 {
                     clipPath: 'inset(0% 0% 0% 0%)',
-                    stagger: 0.15,
+                    stagger: 0.2,
                     ease: 'none', 
                 }
             );
@@ -68,8 +69,7 @@ export default function AnimatedText() {
                 ref={textRef}
                 className="
                     z-10
-                    w-full
-                    text-[clamp(2rem,0.333rem+7.407vw,7rem)] tracking-tight leading-none text-center font-semibold
+                    text-[clamp(2rem,0.267rem+7.704vw,7.2rem)] tracking-tight leading-none text-center font-semibold
                     flex flex-col gap-4 sm:gap-6 md:gap-7 lg:gap-8 py-16 md:py-24 lg:py-32 
                     items-center justify-center
                 "

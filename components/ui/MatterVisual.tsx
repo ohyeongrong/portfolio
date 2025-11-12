@@ -2,34 +2,40 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Matter from 'matter-js';
-import { createBadgeBodies } from './MatterUtils';
+import { createBadgeBodies, createEllipseBodies } from './MatterUtils';
 
 // ----------------------------------------------------
-// 메인 컴포넌트: Matter.js 엔진 초기화 및 캔버스 렌더링
+// 🔧 함수 매핑 테이블
 // ----------------------------------------------------
+const bodyCreators = {
+  badge: createBadgeBodies,
+  ellipse: createEllipseBodies,
+};
 
-const MatterVisual = ({ createBodies = createBadgeBodies }) => {
+// ----------------------------------------------------
+// 메인 컴포넌트
+// ----------------------------------------------------
+const MatterVisual = ({ type = 'badge' }) => {
   const sceneRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [isCanvasInView, setIsCanvasInView] = useState(false);
 
-  // ✅ 1. 컨테이너 크기 계산
+  // ✅ 컨테이너 크기 계산
   useEffect(() => {
     const updateSize = () => {
       if (sceneRef.current) {
         setDimensions({
-            width: sceneRef.current.clientWidth,
-            height: sceneRef.current.clientHeight,
+          width: sceneRef.current.clientWidth,
+          height: sceneRef.current.clientHeight,
         });
       }
     };
-    
     updateSize();
     window.addEventListener('resize', updateSize);
     return () => window.removeEventListener('resize', updateSize);
   }, []);
 
-  // ✅ 2. Intersection Observer로 “보일 때만 실행”
+  // ✅ Intersection Observer (보일 때만 실행)
   useEffect(() => {
     const el = sceneRef.current;
     if (!el) return;
@@ -38,7 +44,7 @@ const MatterVisual = ({ createBodies = createBadgeBodies }) => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsCanvasInView(true);
-          observer.unobserve(el); // 한 번만 실행
+          observer.unobserve(el);
         }
       },
       { threshold: 0.1 }
@@ -48,24 +54,19 @@ const MatterVisual = ({ createBodies = createBadgeBodies }) => {
     return () => observer.unobserve(el);
   }, []);
 
-  // ✅ 3. Matter.js 초기화 및 렌더링
+  // ✅ Matter.js 초기화
   useEffect(() => {
     const { Engine, Render, World, Bodies, Runner } = Matter;
+    if (!isCanvasInView || dimensions.width === 0 || dimensions.height === 0) return;
 
-    if (!isCanvasInView || dimensions.width === 0 || dimensions.height === 0)
-      return;
+    // 선택된 body 생성 함수
+    const createBodiesFn = bodyCreators[type] || createBadgeBodies;
 
-    // 엔진 생성
     const engine = Engine.create();
     const runner = Runner.create();
     const world = engine.world;
     world.gravity.y = 1;
 
-    // 충돌 감지 정밀도 약간 향상
-    engine.positionIterations = 8;
-    engine.velocityIterations = 4;
-
-    // 렌더러 생성
     const render = Render.create({
       element: sceneRef.current,
       engine,
@@ -79,46 +80,27 @@ const MatterVisual = ({ createBodies = createBadgeBodies }) => {
       },
     });
 
-    // 벽(경계) 생성
+    // 벽
     const wallT = 24;
     const walls = [
-      Bodies.rectangle(
-        dimensions.width / 2,
-        dimensions.height - wallT / 2,
-        dimensions.width,
-        wallT,
-        { isStatic: true, render: { fillStyle: 'transparent' } }
-      ),
-      Bodies.rectangle(
-        wallT / 2,
-        dimensions.height / 2,
-        wallT,
-        dimensions.height,
-        { isStatic: true, render: { fillStyle: 'transparent' } }
-      ),
-      Bodies.rectangle(
-        dimensions.width - wallT / 2,
-        dimensions.height / 2,
-        wallT,
-        dimensions.height,
-        { isStatic: true, render: { fillStyle: 'transparent' } }
-      ),
+      Bodies.rectangle(dimensions.width / 2, dimensions.height - wallT / 2, dimensions.width, wallT, { isStatic: true, render: { fillStyle: 'transparent' } }),
+      Bodies.rectangle(wallT / 2, dimensions.height / 2, wallT, dimensions.height, { isStatic: true, render: { fillStyle: 'transparent' } }),
+      Bodies.rectangle(dimensions.width - wallT / 2, dimensions.height / 2, wallT, dimensions.height, { isStatic: true, render: { fillStyle: 'transparent' } }),
     ];
     World.add(world, walls);
 
-    // 배지 생성
-    const badges = createBodies(Matter, dimensions);
+    // 🔹 type에 따라 다른 body 생성
+    const bodies = createBodiesFn(Matter, dimensions);
 
-    // 시간차로 추가 (부드럽게 떨어지게)
-    const timeouts = badges.map((body, i) =>
+    // 부드럽게 등장
+    const timeouts = bodies.map((body, i) =>
       setTimeout(() => World.add(world, body), i * 400)
     );
 
-    // 실행
     Render.run(render);
     Runner.run(runner, engine);
 
-    // ✅ 클린업 (리소스 누수 방지)
+    // ✅ 클린업
     return () => {
       timeouts.forEach(clearTimeout);
       Render.stop(render);
@@ -130,7 +112,7 @@ const MatterVisual = ({ createBodies = createBadgeBodies }) => {
         render.textures = {};
       }
     };
-  }, [dimensions, createBodies, isCanvasInView]);
+  }, [dimensions, type, isCanvasInView]);
 
   return (
     <div

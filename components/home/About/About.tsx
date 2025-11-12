@@ -15,10 +15,8 @@ export default function About() {
 
     useEffect(() => {
 
-        gsap.fromTo(aboutRef.current,
-            { y: 150 },
+        gsap.from(aboutRef.current,
             { 
-                y: 0,
                 duration: 1.5,
                 ease: 'power4.out',
                 scrollTrigger: {
@@ -31,11 +29,11 @@ export default function About() {
 
 
     return (
-            <section ref={aboutRef} className='panel w-dvw relative overflow-visible h-[400vh]'>
-                <div className="w-full bg-[var(--color-primary-dark)] text-white w-full h-full">
+            <section ref={aboutRef} className='overflow-hidden w-dvw relative h-[400vh]'>
+                <div className="bg-[var(--color-primary-dark)] text-white w-full h-full">
                     <div className="flex flex-col items-center w-full h-full">
                         <h2 className="sr-only">about</h2>
-                        <AnimatedText />
+                        <AnimatedText aboutRef={aboutRef}/>
                         <AnimatedImg />
                     </div>
                 </div>

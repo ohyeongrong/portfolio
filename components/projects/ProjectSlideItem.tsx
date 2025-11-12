@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from 'next/image';
 import ProjectBadgeList from "@/components/ui/ProjectBadgeList";
 import { motion } from 'framer-motion';
+import { useCursorContext } from '@/context/CursorContext';
 
 const titleBadgeVariants = {
     initial: { opacity: 0, transition: { duration: 0.4, ease: 'easeInOut' } },
@@ -20,12 +21,29 @@ const MotionImage = motion(Image);
 
 export default function ProjectSlideItem({ project, i }){
 
+        const { setCursorType, setHoverPosition } = useCursorContext();
+    
+        function handleMouseEnter() {
+            setCursorType('view');
+        }
+    
+        function handleMouseLeave() {
+            setCursorType('default');
+        }
+    
+        function handleMouseMove(e) {
+            setHoverPosition({ x: e.clientX, y: e.clientY });
+        }
+
 
     return (
             <motion.article 
                 initial='initial' 
                 whileHover='hover' 
                 className="relative w-full"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                onMouseMove={handleMouseMove}
             >
                 <Link href={`/projects/${project.id}`} className="cursor-none">
                     <div className={`relative max-h-[80vh] aspect-[5/8] ${i % 2 === 0 ? 'w-full' : 'w-4/5'} mx-auto overflow-hidden rounded-2xl`}>

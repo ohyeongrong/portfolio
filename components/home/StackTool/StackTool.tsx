@@ -1,8 +1,8 @@
+
 import SectionTitle from "@/components/ui/SectionTitle";
 import MarqueeText from "../../ui/MarqueeText";
-import MatterVisual, { createEllipseBodies } from "../../ui/MatterVisual";
+import MatterVisual from "@/components/ui/MatterVisual";
 import StackList from "./StackList";
-
 
 
 export default function StackTool() {
@@ -18,10 +18,7 @@ export default function StackTool() {
                     {/* 뱃지 matter 적용 부분 */}
                     <div className="w-full lg:w-1/2 relative h-[70vh] sm:h-[60vh] md:h-[50vh] lg:h-auto">
                         <h3 className="sr-only">Tool List</h3>
-                        <MatterVisual 
-                                createBodies={createEllipseBodies}
-                                isMouseControlEnabled={false}
-                            />
+                        <MatterVisual type="ellipse" />
                     </div>
                     {/* tool & stack의 설명 부분 */}
                     <StackList/>

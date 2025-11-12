@@ -1,7 +1,6 @@
 import ProjectSwiper from "@/components/projects/ProjectSwiper";
 import SwiperNav from "@/components/projects/SwiperNav";
 
-
 export default function Projects(){
 
     return (
