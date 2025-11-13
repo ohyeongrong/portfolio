@@ -35,7 +35,6 @@ export default function AnimatedText({aboutRef}) {
                     end: '+=300%',
                     pin: true,       
                     scrub: 1,   
-                    markers: true
                 },
             });
 

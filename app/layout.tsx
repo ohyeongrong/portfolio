@@ -3,13 +3,15 @@ import "./globals.css";
 import { Bricolage_Grotesque } from 'next/font/google';
 import localFont from 'next/font/local'
 import Header from '../components/layout/Header'
-import Footer from "@/components/layout/Footer";
 import CircleCursor from "@/components/ui/CircleCursor";
 import { CursorProvider } from '@/context/CursorContext';
-import SmoothScrollWrapper from "@/components/layout/SmoothScrollWrapper";
 import ViewHover from "@/components/ui/ViewHover";
 import StackHoverDisplay from "@/components/home/StackTool/StackHoverDisplay";
 import ScrollConditionalWrapper from "@/components/layout/ScrollConditionalWrapper";
+import { LoadingProvider } from "@/context/LoadingContext";
+import Preloader from "@/components/layout/Preloader";
+import InitialLoadTimer from "@/components/layout/InitialLoadTimer";
+
 
 
 export const metadata: Metadata = {
@@ -49,6 +51,9 @@ export default function RootLayout({
   return (
     <html lang="ko" className={`${bricolage.variable} ${pretendard.variable}`}>
       <body>
+        <LoadingProvider>
+          <Preloader />
+          <InitialLoadTimer />
           <CursorProvider>
               <CircleCursor />
                   <Header/>
@@ -60,6 +65,7 @@ export default function RootLayout({
                 <ViewHover/>
                 <StackHoverDisplay />
           </CursorProvider>
+        </LoadingProvider>
       </body>
     </html>
   );

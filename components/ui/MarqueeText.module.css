@@ -1,7 +1,8 @@
 .marqueeContent {
-    white-space: nowrap;
+    display: inline-block;
 }
 
 .marqueeContainer {
     overflow: hidden;
+    white-space: nowrap;
 }

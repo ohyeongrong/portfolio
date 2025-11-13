@@ -7,13 +7,13 @@ import { motion } from 'framer-motion';
 import { useCursorContext } from '@/context/CursorContext';
 
 const titleBadgeVariants = {
-    initial: { opacity: 0, transition: { duration: 0.4, ease: 'easeInOut' } },
-    hover: { opacity: 1, transition: { duration: 0.4, ease: 'easeInOut' } },
+    initial: { opacity: 0, transition: { duration: 0.6, ease: 'easeInOut' } },
+    hover: { opacity: 1, transition: { duration: 0.6, ease: 'easeInOut' } },
 };
 
 const imgVariants = {
-    initial: { scale: 1, transition: { duration: 0.4, ease: 'easeInOut' } },
-    hover: { scale: 1.1, transition: { duration: 0.4, ease: 'easeInOut' } }
+    initial: { scale: 1, transition: { duration: 0.6, ease: 'easeInOut' } },
+    hover: { scale: 1.1, transition: { duration: 0.6, ease: 'easeInOut' } }
     
 }
 
@@ -35,6 +35,11 @@ export default function ProjectSlideItem({ project, i }){
             setHoverPosition({ x: e.clientX, y: e.clientY });
         }
 
+        function handleLinkClick() {
+            setCursorType('default'); 
+            startLoading();
+        }
+
 
     return (
             <motion.article 
@@ -45,7 +50,7 @@ export default function ProjectSlideItem({ project, i }){
                 onMouseLeave={handleMouseLeave}
                 onMouseMove={handleMouseMove}
             >
-                <Link href={`/projects/${project.id}`} className="cursor-none">
+                <Link href={`/projects/${project.id}`} className="cursor-none" onClick={handleLinkClick}>
                     <div className={`relative max-h-[80vh] aspect-[5/8] ${i % 2 === 0 ? 'w-full' : 'w-4/5'} mx-auto overflow-hidden rounded-2xl`}>
                         <MotionImage
                             variants={imgVariants}

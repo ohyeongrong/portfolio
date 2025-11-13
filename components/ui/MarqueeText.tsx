@@ -54,11 +54,11 @@ export default function MarqueeText({ textContent }) {
 
     return (
         <div ref={marqueeTextRef} className={styles.marqueeContainer}>
-            {/* ➡️ 마키 애니메이션을 적용할 요소에 ref를 연결합니다. */}
             <div 
                 ref={marqueeContentRef}
                 className={`${styles.marqueeContent} text-[clamp(6rem,3.4rem+13vw,19rem)] tracking-tighter leading-none`}
             >
+                {textContent}
                 {textContent}
             </div>
         </div>

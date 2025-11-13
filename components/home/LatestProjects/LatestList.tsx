@@ -12,6 +12,7 @@ import { useCursorContext } from '@/context/CursorContext';
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLoading } from '@/context/LoadingContext';
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -54,6 +55,11 @@ export default function LatestList() {
         setHoverPosition({ x: e.clientX, y: e.clientY });
     }
 
+    function handleLinkClick() {
+        setCursorType('default'); 
+        startLoading();
+    }
+
     const latestListRef = useRef(null);
 
     useEffect(() => {
@@ -81,6 +87,8 @@ export default function LatestList() {
 
     }, []);
 
+    const { startLoading } = useLoading();
+
     return (
         <ul 
         ref={latestListRef}
@@ -96,7 +104,7 @@ export default function LatestList() {
                             className={GRID_CLASSES[i]}
                         >
                             <article className="w-full">
-                                <Link href={`/projects/${project.id}`} className='cursor-none'>
+                                <Link href={`/projects/${project.id}`} className='cursor-none' onClick={handleLinkClick}>
                                     <div  className="relative aspect-[3/2] overflow-hidden rounded-2xl">
                                         <MotionImage 
                                             variants={imgVariants}

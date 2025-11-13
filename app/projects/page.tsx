@@ -4,7 +4,7 @@ import SwiperNav from "@/components/projects/SwiperNav";
 export default function Projects(){
 
     return (
-        <section className="h-dvh py-[10vh]">
+        <section className="h-dvh py-[10vh] bg-[var(--color-primary-dark)]">
             <div className="h-[80vh]">
                 <ProjectSwiper />
             </div>
