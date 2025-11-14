@@ -44,7 +44,7 @@ export default function MarqueeText({ textContent }) {
             
             gsap.to(marqueeContentRef.current, {
                 x: -contentWidth / 2, // ➡️ content의 절반 너치만큼 이동 (-50% 효과)
-                duration: 10, // CSS에서 설정했던 50s와 동일하게 설정
+                duration: 50, // CSS에서 설정했던 50s와 동일하게 설정
                 ease: 'linear',
                 repeat: -1, // 무한 반복
             });

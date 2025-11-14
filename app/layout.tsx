@@ -11,6 +11,8 @@ import ScrollConditionalWrapper from "@/components/layout/ScrollConditionalWrapp
 import { LoadingProvider } from "@/context/LoadingContext";
 import Preloader from "@/components/layout/Preloader";
 import InitialLoadTimer from "@/components/layout/InitialLoadTimer";
+import { LayoutGroup } from 'framer-motion';
+
 
 
 
@@ -58,9 +60,9 @@ export default function RootLayout({
               <CircleCursor />
                   <Header/>
                     <ScrollConditionalWrapper>
-                      <main>
-                          {children}
-                      </main>
+                        <main>
+                            {children}
+                        </main>
                     </ScrollConditionalWrapper>
                 <ViewHover/>
                 <StackHoverDisplay />

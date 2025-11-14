@@ -54,47 +54,49 @@ export default function ProjectDetailGallery({ project }) {
 
 
     return (
-        <div className="flex flex-col gap-2 md:gap-4 lg:gap-6 py-16">
-            {/* 첫째 줄 */}
-            <div 
-                ref={firstRowRef}
-                className="w-full flex flex-nowrap justify-center items-end gap-2 md:gap-4 lg:gap-6"
-            >
-                {
-                    firstRow.map((image, i) => (
-                        <figure 
-                            key={i} 
-                            className={`${imageWidths[i]} aspect-[3/2] relative flex-shrink-0`}
-                        >
-                            <Image 
-                                className=" object-cover rounded-lg md:rounded-xl lg:rounded-2xl" 
-                                src={image.src} 
-                                alt={image.caption} 
-                                fill
-                            />
-                        </figure>
-                    ))
-                }
-            </div>
-            {/* 둘째 줄 */}
-            <div 
-                ref={secondRowRef}
-                className="w-full flex flex-nowrap justify-end items-start gap-2 md:gap-4 lg:gap-6 ">
-                {
-                    secondRow.map((image, i) => (
-                        <figure 
-                            key={i + 4}
-                            className={`${imageWidths[i]} aspect-[3/2] relative flex-shrink-0`}
-                        >
-                            <Image 
-                                className=" object-cover rounded-lg md:rounded-xl lg:rounded-2xl" 
-                                src={image.src} 
-                                alt={image.caption} 
-                                fill
-                            />
-                        </figure>
-                    ))
-                }
+        <div className='w-full py-[15vh]'>
+            <div className="flex flex-col gap-2 md:gap-4 lg:gap-6 py-16">
+                {/* 첫째 줄 */}
+                <div 
+                    ref={firstRowRef}
+                    className="w-full flex flex-nowrap justify-center items-end gap-2 md:gap-4 lg:gap-6"
+                >
+                    {
+                        firstRow.map((image, i) => (
+                            <figure 
+                                key={i} 
+                                className={`${imageWidths[i]} aspect-[3/2] relative flex-shrink-0`}
+                            >
+                                <Image 
+                                    className=" object-cover rounded-lg md:rounded-xl lg:rounded-2xl" 
+                                    src={image.src} 
+                                    alt={image.caption} 
+                                    fill
+                                />
+                            </figure>
+                        ))
+                    }
+                </div>
+                {/* 둘째 줄 */}
+                <div 
+                    ref={secondRowRef}
+                    className="w-full flex flex-nowrap justify-end items-start gap-2 md:gap-4 lg:gap-6 ">
+                    {
+                        secondRow.map((image, i) => (
+                            <figure 
+                                key={i + 4}
+                                className={`${imageWidths[i]} aspect-[3/2] relative flex-shrink-0`}
+                            >
+                                <Image 
+                                    className=" object-cover rounded-lg md:rounded-xl lg:rounded-2xl" 
+                                    src={image.src} 
+                                    alt={image.caption} 
+                                    fill
+                                />
+                            </figure>
+                        ))
+                    }
+                </div>
             </div>
         </div>
     )

@@ -3,8 +3,73 @@
 
 import Image from 'next/image';
 import Badge from "@/components/ui/Badge";
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect, useRef } from 'react';
+import SectionTitle from '../ui/SectionTitle';
+
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function ProjectDetailFeatureList({ project }) {
+
+    const imgRefs = useRef<HTMLElement[]>([])
+    const contentRefs = useRef<HTMLElement[]>([])
+
+    useEffect(() => {
+
+        project.details.keyFeatures.forEach((_, i) => {
+            const img = imgRefs.current[i];
+            const content = contentRefs.current[i];
+            const isOdd = i % 2 !== 0; 
+
+            const triggerElement = img.closest('.grid'); 
+            gsap.fromTo(img, 
+                {
+                    opacity: 0,
+                    xPercent: isOdd ? 50 : -50, 
+                    rotate: isOdd ? 5 : -5,
+                    scale: 0.95,
+                }, 
+                {
+                    opacity: 1,
+                    xPercent: 0,
+                    rotate: 0,
+                    scale: 1,
+                    duration: 1.2,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: triggerElement,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse',
+                        scrub: 1,
+                    }
+                }
+            );
+
+            gsap.fromTo(content, 
+                {
+                    opacity: 0,
+                    y: 50,
+                }, 
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.2,
+                    delay: 0.2,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: triggerElement,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse',
+                        scrub: 1,
+                    }
+                }
+            );
+        });
+        // ----------------------------------------------------
+    }, [project.details.keyFeatures]);
+
 
     return (
         <div className="flex flex-col md:gap-60">
@@ -23,7 +88,9 @@ export default function ProjectDetailFeatureList({ project }) {
 
                     
                     const ContentBlock = ( 
-                        <div className={`${ContentClasses} order-2`}>
+                        <div 
+                            className={`${ContentClasses} order-2`} 
+                            ref={el => {if (el) contentRefs.current[i] = el}}>
                             <div className="flex flex-col gap-8">
                                 <ul className="flex gap-0.5">
                                     {
@@ -35,7 +102,9 @@ export default function ProjectDetailFeatureList({ project }) {
                                     }
                                 </ul>
                                 <dl className="flex flex-col gap-4">
-                                    <dt className="text-[clamp(2.5rem,2.212rem+1.282vw,3.75rem)] font-bold tracking-tight leading-none">{ feat.featureTitle }</dt>
+                                    <dt className="text-[clamp(2.5rem,2.212rem+1.282vw,3.75rem)] font-bold tracking-tight leading-none">
+                                        <SectionTitle text={ feat.featureTitle } />
+                                    </dt>
                                     <dd className="lg:text-lg font-(family-name:--font-pretendard) text-[var(--color-gray-700)]">
                                         { feat.content }
                                     </dd>
@@ -61,7 +130,9 @@ export default function ProjectDetailFeatureList({ project }) {
                     );
 
                     const ImageBlock = (
-                        <figure className={`${ImageClasses} aspect-[10/12] relative order-1`}>
+                        <figure 
+                            className={`${ImageClasses} aspect-[10/12] relative order-1`}   
+                            ref={el => {if (el) imgRefs.current[i] = el}}>
                             <Image className="object-cover rounded-2xl" src={feat.featureImage.src} alt={feat.featureImage.caption} fill/>
                         </figure>
                     );

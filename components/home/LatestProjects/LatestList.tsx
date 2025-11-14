@@ -105,7 +105,7 @@ export default function LatestList() {
                         >
                             <article className="w-full">
                                 <Link href={`/projects/${project.id}`} className='cursor-none' onClick={handleLinkClick}>
-                                    <div  className="relative aspect-[3/2] overflow-hidden rounded-2xl">
+                                    <figure className="relative aspect-[3/2] overflow-hidden rounded-2xl">
                                         <MotionImage 
                                             variants={imgVariants}
                                             initial='initial' 
@@ -114,7 +114,7 @@ export default function LatestList() {
                                             src={project.thumbnail} 
                                             alt={project.summary} 
                                             fill/>
-                                    </div>
+                                    </figure>
                                     <div className="w-full flex flex-col gap-2 lg:flex-row lg:justify-between lg:items-center py-2">
                                         <h3 className="text-xl">{project.title}</h3>
                                         {/* 카테고리 및 사용 툴 뱃지 */}

@@ -12,7 +12,7 @@ import ProjectSlideItem from "./ProjectSlideItem";
 export default function ProjectSwiper(){
 
     return (
-            <Swiper 
+            <Swiper
                 modules={[Mousewheel, Navigation, Pagination]}
                 data-no-scroll
                 grabCursor={true}
