@@ -11,19 +11,12 @@ export default function Footer() {
     return (      
             <footer>
                 <div className="text-white bg-[var(--color-primary-dark)]">
-                    {/* 이거 배경 라운드 부분 모바일일때 좀 조정 해야할듯? */}
                     <div className="bg-[var(--color-background)] w-full h-16 rounded-b-[6vw]">
                         <span className="rounded-l-2xl"></span>
                     </div>
                     <div className="py-6">
                         <MarqueeText textContent={
                             <>
-                                <span>Oh!</span>
-                                <span className="text-transparent [-webkit-text-stroke:1px_white]">Oh!</span>
-                                <span>Oh!</span>
-                                <span className="text-transparent [-webkit-text-stroke:1px_white]">Oh!</span>
-                                <span>Oh!</span>
-                                <span className="text-transparent [-webkit-text-stroke:1px_white]">Oh!</span>
                                 <span>Oh!</span>
                                 <span className="text-transparent [-webkit-text-stroke:1px_white]">Oh!</span>
                             </>
@@ -35,7 +28,6 @@ export default function Footer() {
                                     {mailTextLink}
                                 </HoverRevealText>
                                 </a>
-                            {/* 버튼 컴포넌트 만든거 넣으면 됨 */}
                             <ScrollToTop/>
                         </div>
                     </div>

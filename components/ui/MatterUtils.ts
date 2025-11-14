@@ -1,6 +1,6 @@
 
 // ----------------------------------------------------
-// 배열 무작위 섞기 (shuffleArray)
+// 배열 무작위 섞기
 // ----------------------------------------------------
     export const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -11,7 +11,7 @@
     };
 
 // ----------------------------------------------------
-// 상수 (공통 설정값)
+// 공통 설정값
 // ----------------------------------------------------
     const INITIAL_VP_WIDTH = 1920;
     const BASE_SCALE = 1.1;
@@ -20,7 +20,7 @@
     const MIN_SCALE_ELLIPSE = 0.6;
 
 // ----------------------------------------------------
-// createBadgeBodies (Hero 등에서 사용)
+// createBadgeBodies (Hero에서 사용)
 // ----------------------------------------------------
     export const createBadgeBodies = (Matter, dimensions) => {
     const { Bodies } = Matter;
@@ -72,7 +72,7 @@
     };
 
 // ----------------------------------------------------
-// createEllipseBodies (Stack 섹션 등에서 사용)
+// createEllipseBodies (Stack 섹션에서 사용)
 // ----------------------------------------------------
     export const createEllipseBodies = (Matter, dimensions) => {
     const { Bodies } = Matter;

@@ -10,43 +10,42 @@ gsap.registerPlugin(ScrollTrigger);
 export default function MarqueeText({ textContent }) {
 
     const marqueeTextRef = useRef(null);
-    const marqueeContentRef = useRef(null); // ➡️ 마키 콘텐츠를 위한 ref 추가
+    const marqueeContentRef = useRef(null);
 
     useEffect(() => {
-        // 1. 등장 애니메이션 (오른쪽에서 나타남) 정의
+
         if (!marqueeTextRef.current || !marqueeContentRef.current) {
-            // ref가 null이면 애니메이션 로직을 실행하지 않고 종료합니다.
             return; 
         }
+        // 마키 등장 애니메이션
         const fadeIn = gsap.fromTo(
-            marqueeTextRef.current, // 텍스트 컨테이너
+            marqueeTextRef.current,
             { 
                 opacity: 0,
-                y: 100, // 오른쪽에서 시작
+                y: 100, 
             },
             {
                 opacity: 1,
-                y: 0, 
-                duration: 1, 
+                y: 0,
+                duration: 1,
                 ease: 'power3.out',
                 scrollTrigger: {
                     trigger: marqueeTextRef.current,
-                    start: 'top 90%',
+                    start: 'top bottom',
                 },
             }
         );
 
-        // 2. 등장 애니메이션이 끝난 후, 무한 마키 애니메이션 실행
+        // 무한 마키 애니메이션
         fadeIn.eventCallback('onComplete', () => {
             
-            // marqueeContent 요소의 너비를 계산하여 이동 거리를 설정합니다.
             const contentWidth = marqueeContentRef.current.offsetWidth;
             
             gsap.to(marqueeContentRef.current, {
-                x: -contentWidth / 2, // ➡️ content의 절반 너치만큼 이동 (-50% 효과)
-                duration: 50, // CSS에서 설정했던 50s와 동일하게 설정
+                x: -contentWidth / 2, 
+                duration: 50,
                 ease: 'linear',
-                repeat: -1, // 무한 반복
+                repeat: -1,
             });
         });
         
@@ -58,6 +57,9 @@ export default function MarqueeText({ textContent }) {
                 ref={marqueeContentRef}
                 className={`${styles.marqueeContent} text-[clamp(6rem,3.4rem+13vw,19rem)] tracking-tighter leading-none`}
             >
+                {textContent}
+                {textContent}
+                {textContent}
                 {textContent}
                 {textContent}
             </div>

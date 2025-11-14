@@ -1,25 +1,10 @@
 'use client';
 
 import useMousePosition from '@/components/hooks/useMousePosition';
-import Badge from '@/components/ui/Badge';
-import { motion, AnimatePresence} from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useCursorContext } from '@/context/CursorContext';
 
-const containerVariants = {
-    visible: {
-        transition: {
-            staggerChildren: 0.08,
-            delayChildren: 0.1, 
-        },
-    },
-};
-
-const badgeItemVariants = {
-    initial: { opacity: 0, scale: 0, x: -40, rotate: 0 },
-    visible: { opacity: 1, scale: 1, x: 0, rotate: 2 },
-    exit: { opacity: 0, scale: 0,  x: 40 },
-};
 
 const dtDefaultColor = 'var(--color-primary-dark)'; 
 const ddDefaultColor = 'var(--color-gray-500)';
@@ -29,7 +14,6 @@ const dimmedOpacity = 0.6;
 
 export default function StackListHover({ stack, hoveredCategory, setHoveredCategory }) {
 
-    const { springX, springY } = useMousePosition();
     const { setCursorType, setHoverData } = useCursorContext();
 
     const [isBadgeVisible, setIsBadgeVisible] = useState(false);
@@ -107,7 +91,7 @@ export default function StackListHover({ stack, hoveredCategory, setHoveredCateg
                 className="cursor-none flex flex-col xl:flex-row xl:items-center gap-[clamp(0.5rem,0.3rem+1vw,1.5rem)] border-b border-[var(--color-gray-200)] py-[clamp(2rem,1.8rem+1vw,3rem)] relative"
                 onMouseEnter={ handleMouseEnter }
                 onMouseLeave={ handleMouseLeave }
-                onMouseMove={handleMouseMove}
+                onMouseMove={ handleMouseMove }
                 >
                     <motion.dt 
                         className="flex-2/5 text-[clamp(3rem,2.85rem+0.75vw,3.75rem)] leading-none"

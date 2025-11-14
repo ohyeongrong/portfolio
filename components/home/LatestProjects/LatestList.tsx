@@ -44,7 +44,7 @@ export default function LatestList() {
     const { setCursorType, setHoverPosition } = useCursorContext();
 
     function handleMouseEnter() {
-        setCursorType('view'); // 보여줄 커서 타입
+        setCursorType('view');
     }
 
     function handleMouseLeave() {

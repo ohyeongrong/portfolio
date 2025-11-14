@@ -5,9 +5,6 @@ import LatestList from "./LatestList";
 import Link from "next/link";
 import SectionTitle from "@/components/ui/SectionTitle";
 
-
-
-
 const GRID_CLASSES = [
     "lg:col-span-5 md:col-span-4 sm:col-span-3 sm:col-start-1", 
     
@@ -44,7 +41,6 @@ export default function LatestProjects() {
                         />
                     </Link>
                 </div>
-                {/* 최근 작업물 썸네일*/}
                 <LatestList />
             </div>
         </section>

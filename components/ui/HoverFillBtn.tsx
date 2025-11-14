@@ -1,5 +1,5 @@
 'use client';
-import { animate, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import Icon from './Icon';
 
@@ -34,9 +34,8 @@ export default function HoverFillBtn({ content, sizeClassName, iconName, iconSiz
     const showIcon = !!iconName;
     const hasTextAndIcon = content && showIcon;
 
-    const buttonRef = useRef(null); // ref 생성
+    const buttonRef = useRef(null);
 
-    // 마운트 시 애니메이션 적용
     useEffect(() => {
         gsap.from(buttonRef.current, { opacity: 0, duration: 0.5 });
     }, []);

@@ -5,7 +5,7 @@ import Matter from 'matter-js';
 import { createBadgeBodies, createEllipseBodies } from './MatterUtils';
 
 // ----------------------------------------------------
-// 🔧 함수 매핑 테이블
+// matterUtils
 // ----------------------------------------------------
 const bodyCreators = {
   badge: createBadgeBodies,
@@ -13,14 +13,14 @@ const bodyCreators = {
 };
 
 // ----------------------------------------------------
-// 메인 컴포넌트
+// matter visual
 // ----------------------------------------------------
 const MatterVisual = ({ type = 'badge' }) => {
   const sceneRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [isCanvasInView, setIsCanvasInView] = useState(false);
 
-  // ✅ 컨테이너 크기 계산
+  // 컨테이너 크기 계산
   useEffect(() => {
     const updateSize = () => {
       if (sceneRef.current) {
@@ -35,7 +35,7 @@ const MatterVisual = ({ type = 'badge' }) => {
     return () => window.removeEventListener('resize', updateSize);
   }, []);
 
-  // ✅ Intersection Observer (보일 때만 실행)
+  // Intersection Observer
   useEffect(() => {
     const el = sceneRef.current;
     if (!el) return;
@@ -54,12 +54,12 @@ const MatterVisual = ({ type = 'badge' }) => {
     return () => observer.unobserve(el);
   }, []);
 
-  // ✅ Matter.js 초기화
+  // Matter.js 초기화
   useEffect(() => {
     const { Engine, Render, World, Bodies, Runner } = Matter;
     if (!isCanvasInView || dimensions.width === 0 || dimensions.height === 0) return;
 
-    // 선택된 body 생성 함수
+    // 선택된 body 생성
     const createBodiesFn = bodyCreators[type] || createBadgeBodies;
 
     const engine = Engine.create();
@@ -89,7 +89,7 @@ const MatterVisual = ({ type = 'badge' }) => {
     ];
     World.add(world, walls);
 
-    // 🔹 type에 따라 다른 body 생성
+    // type에 따라 다른 body 생성
     const bodies = createBodiesFn(Matter, dimensions);
 
     // 부드럽게 등장
@@ -100,7 +100,7 @@ const MatterVisual = ({ type = 'badge' }) => {
     Render.run(render);
     Runner.run(runner, engine);
 
-    // ✅ 클린업
+    // 클린업
     return () => {
       timeouts.forEach(clearTimeout);
       Render.stop(render);

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react'; // useState 추가
+import { useEffect } from 'react';
 import { useMotionValue, useSpring } from 'framer-motion';
 
 export default function useMousePosition() {

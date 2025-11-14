@@ -1,16 +1,22 @@
 'use client';
 
-import { AnimatePresence, motion, stagger } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useCursorContext } from '@/context/CursorContext';
 import Badge from '@/components/ui/Badge';
 
 const containerVariants = {
-  visible: {
-    transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.1,
+    visible: {
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.1,
+      },
     },
-  },
+    exit: {
+      transition: {
+        staggerChildren: 0.05,
+        staggerDirection: -1, // 역순으로 사라지게 합니다.
+      },
+    },
 };
 
 const badgeItemVariants = {

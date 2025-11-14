@@ -25,10 +25,12 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
 
     return (
         <PageTransition>
-            <section className="w-full overflow-x-hidden">
-                <ProjectDetailHeader project={project}/>
-                <ProjectDetailGallery project={project}/>
-                <ProjectDetailFeatureList project={project}/>
+            <section className="w-full overflow-x-hidden py-[10vh]">
+                <div className="flex flex-col gap-[20vh]">
+                    <ProjectDetailHeader project={project}/>
+                    <ProjectDetailGallery project={project}/>
+                    <ProjectDetailFeatureList project={project}/>
+                </div>
             </section>
         </PageTransition>
     )

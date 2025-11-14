@@ -4,7 +4,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import React, { useRef, useEffect, useLayoutEffect } from 'react';
 
-// Next.js 환경을 위한 useIsomorphicLayoutEffect (안정성 향상)
 const useIsomorphicLayoutEffect = 
   typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
@@ -73,16 +72,15 @@ export default function AnimatedText({aboutRef}) {
                     items-center justify-center
                 "
             >
-                {/* ... (텍스트 렌더링 부분은 동일) ... */}
                 {
                     TEXT_LINES.map((text, index) => (
                         <div key={index} className="relative">
-                            {/* 1. 배경 텍스트 (회색) */}
+                            {/* 배경 텍스트 (회색) */}
                             <span className="text-[var(--color-gray-900)]">
                                 {text}
                             </span>
 
-                            {/* 2. 전경 텍스트 (흰색) — clipPath 애니메이션 대상 */}
+                            {/* 전경 텍스트 (흰색) */}
                             <span
                             className="filled-text absolute top-0 left-0 right-0 text-white"
                             style={{

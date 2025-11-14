@@ -8,7 +8,7 @@ import { useState } from 'react';
 export default function CircleCursor() {
     const { springX, springY } = useMousePosition();
     const { cursorType } = useCursorContext();
-    const [type, setType] = useState('default'); // 로컬 렌더링용 (렌더 최소화)
+    const [type, setType] = useState('default');
 
     // motionValue 값이 바뀔 때만 반응
     useMotionValueEvent(cursorType, 'change', (latest) => {

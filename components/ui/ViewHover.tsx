@@ -14,7 +14,7 @@ export default function ViewHover() {
         exit: { opacity: 0, scale: 0.2, transition: { duration: 0.4 }},
     };
 
-    // motionValue 변화 감지해서 React state로 동기화
+    // motionValue 변화 감지
     useMotionValueEvent(cursorType, 'change', (v) => {
         setIsView(v === 'view');
     });

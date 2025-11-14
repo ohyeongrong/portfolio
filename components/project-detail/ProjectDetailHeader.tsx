@@ -6,7 +6,6 @@ import Image from 'next/image';
 import TextLink from "@/components/ui/TextLink";
 import ProjectBadgeList from "@/components/ui/ProjectBadgeList";
 import HoverRevealText from "@/components/utility/HoverRevealText";
-import { motion } from 'framer-motion';
 
 
 export default function ProjectDetailHeader({ project }) {
@@ -15,11 +14,11 @@ export default function ProjectDetailHeader({ project }) {
     const webSite = <TextLink content="WebSite" iconName="arrowOutward" iconSize={18}/>
 
     return (
-            <div className="w-full h-dvh pt-[5vh] px-6 flex flex-col gap-[5vh]">
-                <figure className="relative w-full h-[70vh]">
+            <div className="w-full h-dvh px-6 flex flex-col gap-[5vh]">
+                <figure className="relative w-full h-[45vh] lg:h-[70vh]">
                     <Image className="object-cover rounded-2xl" src={project.details.detailImages.mainImages.src} alt={project.details.detailImages.mainImages.caption} fill/>
                 </figure>
-                <div className="flex flex-col gap-4 h-[25vh]">
+                <div className="flex flex-col gap-4 h-[50vh] lg:h-[25vh]">
                     <div className="text-[clamp(0.875rem,0.846rem+0.128vw,1rem)]">
                         <time dateTime={ project.duration }>{ project.duration }</time>
                     </div>

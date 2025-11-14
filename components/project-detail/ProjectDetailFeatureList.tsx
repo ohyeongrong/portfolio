@@ -15,6 +15,7 @@ export default function ProjectDetailFeatureList({ project }) {
 
     const imgRefs = useRef<HTMLElement[]>([])
     const contentRefs = useRef<HTMLElement[]>([])
+    const badgeRefs = useRef<HTMLElement[]>([])
 
     useEffect(() => {
 
@@ -23,7 +24,9 @@ export default function ProjectDetailFeatureList({ project }) {
             const content = contentRefs.current[i];
             const isOdd = i % 2 !== 0; 
 
-            const triggerElement = img.closest('.grid'); 
+            const badgeContainer = badgeRefs.current[i]; 
+            const triggerElement = img.closest('.grid');
+
             gsap.fromTo(img, 
                 {
                     opacity: 0,
@@ -66,6 +69,24 @@ export default function ProjectDetailFeatureList({ project }) {
                     }
                 }
             );
+
+            if (badgeContainer) {
+            // 배지 컨테이너 내부의 모든 <li> 요소 선택 (개별 배지)
+            const badges = badgeContainer.querySelectorAll('li');
+
+            gsap.fromTo(badges, 
+                { scale: 0,},
+                {
+                    scale: 1,
+                    stagger: 0.1,
+                    ease: 'bounce.inOut',
+                    scrollTrigger: {
+                        trigger: triggerElement,
+                        start: 'top top',
+                        toggleActions: 'play none none reverse',
+                    }
+                });
+            }
         });
         // ----------------------------------------------------
     }, [project.details.keyFeatures]);
@@ -79,12 +100,12 @@ export default function ProjectDetailFeatureList({ project }) {
                     const isOdd = i % 2 !== 0;
 
                     const ImageClasses = isOdd 
-                        ? "md:col-start-8 md:col-span-5 md:order-2" // 홀수: 오른쪽 배치, MD에서 순서 2
-                        : "md:col-start-1 md:col-span-5 md:order-1" // 짝수: 왼쪽 배치, MD에서 순서 1
+                        ? "md:col-start-8 md:col-span-5 md:order-2" // 홀수: 오른쪽 배치
+                        : "md:col-start-1 md:col-span-5 md:order-1" // 짝수: 왼쪽 배치
 
                     const ContentClasses = isOdd
-                        ? "md:col-start-3 md:col-span-4 md:order-1" // 홀수: 왼쪽 배치, MD에서 순서 1
-                        : "md:col-start-7 md:col-span-4 md:order-2" // 짝수: 오른쪽 배치, MD에서 순서 2 (이미지보다 나중에 옴)
+                        ? "md:col-start-3 md:col-span-4 md:order-1" // 홀수: 왼쪽 배치
+                        : "md:col-start-7 md:col-span-4 md:order-2" // 짝수: 오른쪽 배치
 
                     
                     const ContentBlock = ( 
@@ -92,7 +113,7 @@ export default function ProjectDetailFeatureList({ project }) {
                             className={`${ContentClasses} order-2`} 
                             ref={el => {if (el) contentRefs.current[i] = el}}>
                             <div className="flex flex-col gap-8">
-                                <ul className="flex gap-0.5">
+                                <ul className="flex gap-0.5" ref={el => {if (el) badgeRefs.current[i] = el}}>
                                     {
                                         feat.toolsUsed.map((tool, i) =>
                                             <li key={tool + i}>
@@ -138,7 +159,7 @@ export default function ProjectDetailFeatureList({ project }) {
                     );
 
                     return (
-                        <div key={feat.id + i} className="grid grid-cols-1 md:grid-cols-12 items-center px-6 gap-y-8 py-16">
+                        <div key={feat.id + i} className="grid grid-cols-1 md:grid-cols-12 items-center px-6 gap-y-8 py-[10vh]">
                             {ImageBlock}
                             {ContentBlock}
                         </div>

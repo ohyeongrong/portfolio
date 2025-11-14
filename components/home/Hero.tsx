@@ -1,15 +1,7 @@
-'use client'
-
-import { useEffect, useRef } from "react";
 import MarqueeText from "../ui/MarqueeText"
 import MatterVisual from "../ui/MatterVisual"
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
-
 
 export default function Hero() {
-
 
     return (
         <section className="panel h-dvh w-dvw">
@@ -20,18 +12,6 @@ export default function Hero() {
                 </div>
                 <MarqueeText textContent={
                     <>
-                        <span>Oh!</span>
-                        <span className="text-transparent [-webkit-text-stroke:1px_black]">Oh!</span>
-                        <span>Oh!</span>
-                        <span className="text-transparent [-webkit-text-stroke:1px_black]">Oh!</span>
-                        <span>Oh!</span>
-                        <span className="text-transparent [-webkit-text-stroke:1px_black]">Oh!</span>
-                        <span>Oh!</span>
-                        <span className="text-transparent [-webkit-text-stroke:1px_black]">Oh!</span>
-                        <span>Oh!</span>
-                        <span className="text-transparent [-webkit-text-stroke:1px_black]">Oh!</span>
-                        <span>Oh!</span>
-                        <span className="text-transparent [-webkit-text-stroke:1px_black]">Oh!</span>
                         <span>Oh!</span>
                         <span className="text-transparent [-webkit-text-stroke:1px_black]">Oh!</span>
                     </>

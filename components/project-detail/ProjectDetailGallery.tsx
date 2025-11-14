@@ -54,8 +54,8 @@ export default function ProjectDetailGallery({ project }) {
 
 
     return (
-        <div className='w-full py-[15vh]'>
-            <div className="flex flex-col gap-2 md:gap-4 lg:gap-6 py-16">
+        <div className='w-full h-fit'>
+            <div className="flex flex-col items-center justify-center gap-2 md:gap-4 lg:gap-6">
                 {/* 첫째 줄 */}
                 <div 
                     ref={firstRowRef}

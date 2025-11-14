@@ -15,20 +15,15 @@ export default function StackTool() {
                     <SectionTitle text='Stack & Tool'/>
                 </div>
                 <div className="flex flex-col lg:flex-row justify-between pt-16 lg:gap-16 h-fit">
-                    {/* 뱃지 matter 적용 부분 */}
                     <div className="w-full lg:w-1/2 relative h-[70vh] sm:h-[60vh] md:h-[50vh] lg:h-auto">
                         <h3 className="sr-only">Tool List</h3>
                         <MatterVisual type="ellipse" />
                     </div>
-                    {/* tool & stack의 설명 부분 */}
                     <StackList/>
                 </div>
-                {/* 하단 흐르는 텍스트 */}
                 <div className="px-6">
                     <MarqueeText textContent={
                         <>
-                            <span>©2025 Oh! YeongRong</span>
-                            <span>©2025 Oh! YeongRong</span>
                             <span>©2025 Oh! YeongRong</span>
                             <span>©2025 Oh! YeongRong</span>
                         </>
