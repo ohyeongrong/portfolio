@@ -7,17 +7,42 @@ import TextLink from "@/components/ui/TextLink";
 import ProjectBadgeList from "@/components/ui/ProjectBadgeList";
 import HoverRevealText from "@/components/utility/HoverRevealText";
 
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef, useLayoutEffect } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function ProjectDetailHeader({ project }) {
+
+    const containerRef = useRef(null);
+    const imageRef = useRef(null);
 
     const gitHub = <TextLink content="GitHub" iconName="arrowOutward" iconSize={18}/>
     const webSite = <TextLink content="WebSite" iconName="arrowOutward" iconSize={18}/>
 
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            if (imageRef.current) {
+                gsap.to(imageRef.current, {
+                    y: 100,
+                    scale: 1.4,
+                    ease: "none", 
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: "top top",
+                        end: "bottom top", 
+                        scrub: true,
+                    }
+                });
+            }
+        }, containerRef); 
+
+        return () => ctx.revert();
+    }, []);
+
     return (
-            <div className="w-full h-dvh px-6 flex flex-col gap-[5vh]">
-                <figure className="relative w-full h-[45vh] lg:h-[70vh]">
-                    <Image className="object-cover rounded-2xl" src={project.details.detailImages.mainImages.src} alt={project.details.detailImages.mainImages.caption} fill/>
-                </figure>
+            <div ref={containerRef} className="w-full h-dvh px-6 flex flex-col">
                 <div className="flex flex-col gap-4 h-[50vh] lg:h-[25vh]">
                     <div className="text-[clamp(0.875rem,0.846rem+0.128vw,1rem)]">
                         <time dateTime={ project.duration }>{ project.duration }</time>
@@ -48,6 +73,9 @@ export default function ProjectDetailHeader({ project }) {
                         </div>
                     </div>
                 </div>
+                <figure ref={imageRef} className="relative w-full h-[45vh] lg:h-[70vh]">
+                    <Image className="object-cover rounded-2xl" src={project.details.detailImages.mainImages.src} alt={project.details.detailImages.mainImages.caption} fill/>
+                </figure>
             </div>
     )
 }

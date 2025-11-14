@@ -31,13 +31,11 @@ export default function ProjectDetailFeatureList({ project }) {
                 {
                     opacity: 0,
                     xPercent: isOdd ? 50 : -50, 
-                    rotate: isOdd ? 5 : -5,
                     scale: 0.95,
                 }, 
                 {
                     opacity: 1,
                     xPercent: 0,
-                    rotate: 0,
                     scale: 1,
                     duration: 1.2,
                     ease: 'power3.out',
@@ -71,7 +69,6 @@ export default function ProjectDetailFeatureList({ project }) {
             );
 
             if (badgeContainer) {
-            // 배지 컨테이너 내부의 모든 <li> 요소 선택 (개별 배지)
             const badges = badgeContainer.querySelectorAll('li');
 
             gsap.fromTo(badges, 
@@ -159,7 +156,7 @@ export default function ProjectDetailFeatureList({ project }) {
                     );
 
                     return (
-                        <div key={feat.id + i} className="grid grid-cols-1 md:grid-cols-12 items-center px-6 gap-y-8 py-[10vh]">
+                        <div key={feat.id + i} className="grid grid-cols-1 md:grid-cols-12 items-center px-6 gap-y-8 py-[5vh]">
                             {ImageBlock}
                             {ContentBlock}
                         </div>
