@@ -6,10 +6,9 @@ import { Mousewheel, Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-creative';
-import { PROJECT_DATA } from "@/constants/PROJECT_DATA";
 import ProjectSlideItem from "./ProjectSlideItem";
 
-export default function ProjectSwiper(){
+export default function ProjectSwiper({ project }){
 
     return (
             <Swiper
@@ -56,7 +55,7 @@ export default function ProjectSwiper(){
                 }}
             >
                 {
-                    PROJECT_DATA.map((project, i) => 
+                    project.map((project, i) => 
                         <SwiperSlide 
                             key={project.id + i}
                             className="!flex !items-center !justify-center"

@@ -3,9 +3,10 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import React, { useRef, useEffect, useLayoutEffect } from 'react';
+import { Context } from 'vm';
 
 const useIsomorphicLayoutEffect = 
-  typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+    typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,15 +18,21 @@ const TEXT_LINES = [
     '결과물을 개발합니다.',
 ];
 
-export default function AnimatedText({aboutRef}) {
+export default function AnimatedText() {
 
-    const textRef = useRef(null);
-    const ctx = useRef(null);
+    const textRef = useRef<HTMLDivElement>(null);
+    const ctx = useRef<Context | null>(null);
 
     useIsomorphicLayoutEffect(() => {
+
+        if (!textRef.current) return;
+
+        const handleRefreshInit = () => {
+        };
+
         ctx.current = gsap.context(() => {
             
-            const filledTextSpans = gsap.utils.toArray(textRef.current.querySelectorAll('.filled-text'));
+            const filledTextSpans = gsap.utils.toArray(textRef.current!.querySelectorAll('.filled-text'));
             
             const tl = gsap.timeline({
                 scrollTrigger: {
@@ -51,11 +58,11 @@ export default function AnimatedText({aboutRef}) {
             
         }, textRef); 
 
-        ScrollTrigger.addEventListener("refreshInit", () => {
-        });
+        ScrollTrigger.addEventListener("refreshInit", handleRefreshInit);
+        ScrollTrigger.refresh();
 
         return () => {
-            ScrollTrigger.removeEventListener("refreshInit"); // 정리
+            ScrollTrigger.removeEventListener("refreshInit", handleRefreshInit); 
             ctx.current?.revert();
         };
         

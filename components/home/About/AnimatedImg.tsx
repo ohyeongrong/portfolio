@@ -64,15 +64,20 @@ const WORK_IMAGES_DATA = [
 
 export default function AnimatedImg() {
 
-   const workImgGridRef = useRef(null);
+    const workImgGridRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
 
+        if (!workImgGridRef.current) return;
+
         const workImgItems = gsap.utils.toArray(workImgGridRef.current.children);
 
-        workImgItems.forEach((item, i) => {
+        workImgItems.forEach(item => {
+
+            const targetElement = item as HTMLElement;
+
             gsap.fromTo(
-            item,
+            targetElement,
             { opacity: 0, y: 100 },
             {
                 y: 0,
@@ -80,7 +85,7 @@ export default function AnimatedImg() {
                 duration: 1,
                 ease: "power3.out",
                 scrollTrigger: {
-                    trigger: item,
+                    trigger: targetElement,
                     start: "top 90%",
                     toggleActions: "play reverse play reverse",
                     // markers: true,

@@ -1,26 +1,14 @@
 
-import { PROJECT_DATA } from "@/constants/PROJECT_DATA";
+import { PROJECT_DATA, ProjectDataType } from "@/constants/PROJECT_DATA";
 import HoverFillBtn from "../../ui/HoverFillBtn";
 import LatestList from "./LatestList";
 import Link from "next/link";
 import SectionTitle from "@/components/ui/SectionTitle";
 
-const GRID_CLASSES = [
-    "lg:col-span-5 md:col-span-4 sm:col-span-3 sm:col-start-1", 
-    
-    "lg:col-span-4 md:col-span-3 sm:col-span-2 lg:col-end-13 md:col-end-9 sm:col-end-7", 
-    
-    "lg:col-span-5 md:col-span-4 sm:col-span-3 lg:col-start-5 md:col-start-4 sm:col-start-3", 
-    
-    "lg:col-span-4 md:col-span-3 sm:col-span-2 sm:col-start-1", 
-    
-    "lg:col-span-5 md:col-span-4 sm:col-span-3 lg:col-end-13 md:col-end-9 sm:col-end-7"
-];
-
 export default function LatestProjects() {
 
     const latestCount = 5;
-    const latestProjects = PROJECT_DATA.filter(p => p.isLatest).slice(0, latestCount);
+    const latestProjects: ProjectDataType[] = PROJECT_DATA.filter(p => p.isLatest).slice(0, latestCount);
 
     return (
         <section className="panel">
@@ -41,7 +29,7 @@ export default function LatestProjects() {
                         />
                     </Link>
                 </div>
-                <LatestList />
+                <LatestList latestProjects={latestProjects}/>
             </div>
         </section>
     )

@@ -1,4 +1,11 @@
-export const ICONS = {
+import React from 'react';
+
+export type IconPath = React.ReactNode;
+export interface IconCollection {
+    [key: string]: IconPath;
+}
+
+export const ICONS: IconCollection = {
     smile: (
         <path d="M260-280q-26 0-43-17t-17-43q0-25 17-42.5t43-17.5q25 0 42.5 17.5T320-340q0 26-17.5 43T260-280Zm0-280q-26 0-43-17t-17-43q0-25 17-42.5t43-17.5q25 0 42.5 17.5T320-620q0 26-17.5 43T260-560Zm140 120v-80h160v80H400Zm288 200-66-44q28-43 43-92.5T680-480q0-66-21.5-124T598-709l61-51q48 57 74.5 128.5T760-480q0 67-19 127.5T688-240Z"/>
     ),
@@ -16,7 +23,15 @@ export const ICONS = {
     )
 }
 
-export default function Icon({ name, size = 24, className='' }) {
+export type IconName = keyof typeof ICONS;
+
+interface IconProps {
+    name: IconName;
+    size?: number;
+    className?: string;
+}
+
+export default function Icon({ name, size = 24, className='' }: IconProps) {
     const iconPath = ICONS[name];
     if (!iconPath) return null;
 
@@ -29,7 +44,7 @@ export default function Icon({ name, size = 24, className='' }) {
                 fill="currentColor"
                 className={className}
             >
-                {iconPath}
+                { iconPath }
             </svg>
     );
 }

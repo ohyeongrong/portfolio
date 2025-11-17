@@ -1,6 +1,6 @@
 'use client';
 import { motion, AnimatePresence, useMotionValueEvent } from 'framer-motion';
-import { useCursorContext } from '@/context/CursorContext';
+import { useCursorContext, CursorType } from '@/context/CursorContext';
 import Badge from '@/components/ui/Badge';
 import { useState } from 'react';
 
@@ -15,7 +15,7 @@ export default function ViewHover() {
     };
 
     // motionValue 변화 감지
-    useMotionValueEvent(cursorType, 'change', (v) => {
+    useMotionValueEvent(cursorType, 'change', (v: CursorType) => {
         setIsView(v === 'view');
     });
 

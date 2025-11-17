@@ -19,21 +19,21 @@ export default function CurrentTime() {
         };
     },[]);
 
-const formatTime = (date) => {
-        
-        const dayOptions = { weekday: 'short' };
-        const day = date.toLocaleDateString('en-US', dayOptions);
-        
-        const timeOptions = {
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-            hour12: false,
+    const formatTime = (date: Date) => {
+            
+            const dayOptions = { weekday: 'short' };
+            const day = date.toLocaleDateString('en-US', dayOptions);
+            
+            const timeOptions = {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false,
+            };
+            const time = date.toLocaleTimeString('en-US', timeOptions);
+            
+            return `${day} ${time}`;
         };
-        const time = date.toLocaleTimeString('en-US', timeOptions);
-        
-        return `${day} ${time}`;
-    };
 
     if (!isClient) {
         return <time className="hidden sm:block" />; 

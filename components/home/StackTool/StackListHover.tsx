@@ -1,6 +1,5 @@
 'use client';
 
-import useMousePosition from '@/components/hooks/useMousePosition';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useCursorContext } from '@/context/CursorContext';

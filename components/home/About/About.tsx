@@ -11,9 +11,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
 
-    const aboutRef = useRef(null);
+    const aboutRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
+
+        if (!aboutRef.current) return;
 
         gsap.from(aboutRef.current,
             { 
@@ -33,7 +35,7 @@ export default function About() {
                 <div className="bg-[var(--color-primary-dark)] text-white w-full h-full">
                     <div className="flex flex-col items-center w-full h-full">
                         <h2 className="sr-only">about</h2>
-                        <AnimatedText aboutRef={aboutRef}/>
+                        <AnimatedText />
                         <AnimatedImg />
                     </div>
                 </div>

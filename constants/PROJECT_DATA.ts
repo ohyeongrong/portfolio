@@ -1,6 +1,56 @@
-import { features } from "process";
 
-export const PROJECT_DATA = [
+// 1. 문제 해결 상세 내용을 위한 타입
+export interface ProblemSolution {
+    title: string;
+    content: string;
+}
+
+// 2. 주요 기술(Key Feature) 블록의 이미지 정보 타입
+export interface FeatureImage {
+    src: string;
+    caption: string;
+}
+
+// 3. 주요 기술(Key Feature) 블록 타입
+export interface KeyFeature {
+    id: string;
+    featureTitle: string;
+    content: string;
+    toolsUsed: string[];
+    featureImage: FeatureImage;
+    problemSolving: ProblemSolution[];
+}
+
+// 4. 상세 이미지(Detail Images) 섹션 타입
+export interface DetailImages {
+    mainImages: { src: string; caption: string; };
+    gallery: { src: string; caption: string; }[];
+}
+
+// 5. 프로젝트 상세 정보 (Details) 타입
+export interface ProjectDetails {
+    description: string;
+    keyFeatures: KeyFeature[];
+    detailImages: DetailImages;
+}
+
+
+// 6. 프로젝트 개별 아이템의 최종 타입 
+export interface ProjectDataType {
+    id: string;
+    title: string;
+    summary: string;
+    thumbnail: string;
+    isLatest: boolean;
+    githubUrl: string;
+    websiteUrl: string;
+    duration: string;
+    categories: string[];
+    tools: string[];
+    details: ProjectDetails;
+}
+
+export const PROJECT_DATA: ProjectDataType[] = [
     {
         // 1. 프로젝트 기본 정보 (공통 및 목록 사용)
         id: 'pokeomon', // URL에 사용될 고유 ID (예: 'commerce-renewal')

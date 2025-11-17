@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from 'react';
 
 import Link from "next/link";
 import Image from 'next/image';
-import { PROJECT_DATA } from "@/constants/PROJECT_DATA";
 import ProjectBadgeList from "../../ui/ProjectBadgeList";
 
 import { useCursorContext } from '@/context/CursorContext';
@@ -13,6 +12,7 @@ import { useCursorContext } from '@/context/CursorContext';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLoading } from '@/context/LoadingContext';
+import { ProjectDataType } from '@/constants/PROJECT_DATA';
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -36,10 +36,11 @@ const imgVariants = {
 
 const MotionImage = motion(Image);
 
-export default function LatestList() {
+interface LatestListProps {
+    latestProjects: ProjectDataType[];
+}
 
-    const latestCount = 5;
-    const latestProjects = PROJECT_DATA.filter(p => p.isLatest).slice(0, latestCount);
+export default function LatestList({ latestProjects }: LatestListProps) {
 
     const { setCursorType, setHoverPosition } = useCursorContext();
 
@@ -51,7 +52,7 @@ export default function LatestList() {
         setCursorType('default');
     }
 
-    function handleMouseMove(e) {
+    function handleMouseMove(e: React.MouseEvent<HTMLLIElement, MouseEvent>) {
         setHoverPosition({ x: e.clientX, y: e.clientY });
     }
 
@@ -60,9 +61,11 @@ export default function LatestList() {
         startLoading();
     }
 
-    const latestListRef = useRef(null);
+    const latestListRef = useRef<HTMLUListElement>(null);
 
     useEffect(() => {
+
+        if (!latestListRef.current) return;
 
         const LatestItems = gsap.utils.toArray(latestListRef.current.children);
 

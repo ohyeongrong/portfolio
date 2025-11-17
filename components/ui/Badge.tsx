@@ -8,7 +8,7 @@ import Icon from "./Icon";
         gray: 'bg-[var(--color-gray-200)]',
         white: 'border border-[var(--color-primary-dark)] bg-white',
         transparent: 'bg-transparent',
-    }
+    } as const;
 
     const STYLE_SIZE = {
         xs: 'text-xs py-0.5 px-2',
@@ -17,11 +17,14 @@ import Icon from "./Icon";
         lg: 'text-2xl px-6 py-3',
         xl: 'text-3xl px-8 py-4',
         none: 'p-4'
-    }
+    } as const;
+
+    type ColorKey = keyof typeof STYLE_COLOR;
+    type SizeKey = keyof typeof STYLE_SIZE;
 
     interface BadgeProps {
-        color?: string;
-        size?: string;
+        color?: ColorKey; 
+        size?: SizeKey;
         content: string;
         rounded?: boolean;
         className?: string;
