@@ -7,13 +7,13 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
-import Icon, { IconName, IconProps } from './Icon'; 
+import { IconName } from './Icon'; 
 interface HoverFillBtnProps {
     content: string;
     sizeClassName: string;
     iconName?: IconName;          
-    iconSize?: IconProps;
-    iconClassName?: IconProps;
+    iconSize?: number;
+    iconClassName?: string;
     initialTextColor: string;
     hoverTextColor: string;
     initialBgColor: string;
