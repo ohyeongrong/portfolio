@@ -7,16 +7,27 @@ import React, {
   useEffect,
   useCallback,
   useRef,
+  ReactNode,
 } from 'react';
 import { usePathname } from 'next/navigation';
 
-const LoadingContext = createContext();
+interface LoadingContextType {
+  isLoading: boolean;
+  startLoading: () => void;
+  finishLoading: () => void;
+}
 
-export const LoadingProvider = ({ children }) => {
+const LoadingContext = createContext<LoadingContextType | undefined>(undefined);
+
+interface LoadingProviderProps {
+  children: ReactNode;
+}
+
+export const LoadingProvider = ({ children }: LoadingProviderProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const pathname = usePathname();
   const isInitialMount = useRef(true);
-  const timeoutRef = useRef(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // 로딩 시작
   const startLoading = useCallback(() => {
@@ -28,8 +39,11 @@ export const LoadingProvider = ({ children }) => {
 
   //로딩 종료
   const finishLoading = useCallback(() => {
+
+    if (timeoutRef.current) { 
+        clearTimeout(timeoutRef.current);
+    }
     // 딜레이 애니메이션
-    clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => {
       setIsLoading(false);
     }, 50);
@@ -44,7 +58,9 @@ export const LoadingProvider = ({ children }) => {
 
     useEffect(() => {
         if (!isInitialMount.current && isLoading) {
-            clearTimeout(timeoutRef.current);
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            }
             timeoutRef.current = setTimeout(() => {
                 finishLoading();
             }, 1200);
@@ -53,10 +69,14 @@ export const LoadingProvider = ({ children }) => {
 
   // 클린업 
   useEffect(() => {
-    return () => clearTimeout(timeoutRef.current);
+    return () => {
+      if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+        }
+    };
   }, []);
 
-  const contextValue = {
+  const contextValue: LoadingContextType = {
     isLoading,
     startLoading,
     finishLoading,
@@ -69,4 +89,11 @@ export const LoadingProvider = ({ children }) => {
   );
 };
 
-export const useLoading = () => useContext(LoadingContext);
+export const useLoading = () => {
+    const context = useContext(LoadingContext);
+    
+    if (context === undefined) {
+        throw new Error('useLoading must be used within a LoadingProvider');
+    }
+    return context;
+};

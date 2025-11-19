@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
 import Link from "next/link";
@@ -29,7 +29,7 @@ const GRID_CLASSES = [
 ];
 
 
-const imgVariants = {
+const imgVariants: Variants = {
     initial: { scale: 1, transition: { duration: 0.4, ease: 'easeInOut' } },
     hover: { scale: 1.1, transition: { duration: 0.4, ease: 'easeInOut' } }
 }
@@ -42,6 +42,7 @@ interface LatestListProps {
 
 export default function LatestList({ latestProjects }: LatestListProps) {
 
+    const { startLoading } = useLoading();
     const { setCursorType, setHoverPosition } = useCursorContext();
 
     function handleMouseEnter() {
@@ -71,7 +72,7 @@ export default function LatestList({ latestProjects }: LatestListProps) {
 
         LatestItems.forEach(item => {
             gsap.fromTo(
-            item,
+            item as HTMLLIElement,
             { y: 50, scale: 0.9 },
             {
                 y: 0,
@@ -79,7 +80,7 @@ export default function LatestList({ latestProjects }: LatestListProps) {
                 duration: 1,
                 ease: "power3.out",
                 scrollTrigger: {
-                    trigger: item,
+                    trigger: item as HTMLLIElement,
                     start: "top 80%",
                     toggleActions: "play reverse play reverse",
                     // markers: true,
@@ -90,7 +91,7 @@ export default function LatestList({ latestProjects }: LatestListProps) {
 
     }, []);
 
-    const { startLoading } = useLoading();
+
 
     return (
         <ul 
