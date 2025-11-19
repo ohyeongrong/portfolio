@@ -1,5 +1,5 @@
 'use client';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import Icon from './Icon';
 
@@ -7,11 +7,24 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
+import Icon, { IconName, IconProps } from './Icon'; 
+interface HoverFillBtnProps {
+    content: string;
+    sizeClassName: string;
+    iconName?: IconName;          
+    iconSize?: IconProps;
+    iconClassName?: IconProps;
+    initialTextColor: string;
+    hoverTextColor: string;
+    initialBgColor: string;
+    hoverBgColor: string;
+}
 
-export default function HoverFillBtn({ content, sizeClassName, iconName, iconSize, iconClassName, initialTextColor, hoverTextColor, initialBgColor, hoverBgColor }) {
+
+export default function HoverFillBtn({ content, sizeClassName, iconName, iconSize, iconClassName, initialTextColor, hoverTextColor, initialBgColor, hoverBgColor }: HoverFillBtnProps) {
     const [isHovered, setIsHovered] = useState(false);
 
-    const fillVariants = {
+    const fillVariants: Variants = {
         initial: { y: '100%' },
         animate: {
             y: '0%',
@@ -19,7 +32,7 @@ export default function HoverFillBtn({ content, sizeClassName, iconName, iconSiz
         }
     }
 
-    const contentVariants = {
+    const contentVariants: Variants = {
         initial: {
             backgroundColor: 'rgba(0,0,0,0)',
             color: initialTextColor,
