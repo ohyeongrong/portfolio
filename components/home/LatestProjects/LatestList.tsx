@@ -98,6 +98,9 @@ export default function LatestList({ latestProjects }: LatestListProps) {
         className="grid grid-cols-1 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-y-[clamp(4rem,2.4rem+8vw,12rem)] sm:items-end">
             {
                 latestProjects.map((project, i) => {
+
+                    const sliceTool = project.tools.slice(0,3);
+
                     return(
                         <motion.li
                             onMouseEnter={handleMouseEnter}
@@ -122,7 +125,7 @@ export default function LatestList({ latestProjects }: LatestListProps) {
                                         <h3 className="text-xl">{project.title}</h3>
                                         {/* 카테고리 및 사용 툴 뱃지 */}
                                         <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-0.5">
-                                            <ProjectBadgeList categories={project.categories} tools={project.tools}/>
+                                            <ProjectBadgeList categories={project.categories} tools={sliceTool}/>
                                         </div>
                                     </div>
                                 </Link>

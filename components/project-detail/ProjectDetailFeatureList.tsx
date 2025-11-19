@@ -119,7 +119,7 @@ export default function ProjectDetailFeatureList({ project }) {
                                         )
                                     }
                                 </ul>
-                                <dl className="flex flex-col gap-4">
+                                <dl className="flex flex-col gap-4 font-(family-name:--font-pretendard)">
                                     <dt className="text-[clamp(2.5rem,2.212rem+1.282vw,3.75rem)] font-bold tracking-tight leading-none">
                                         <SectionTitle text={ feat.featureTitle } />
                                     </dt>
@@ -133,9 +133,9 @@ export default function ProjectDetailFeatureList({ project }) {
                                         <div className="border-b"></div>
                                         {
                                             feat.problemSolving.map((problem, i) => 
-                                                <dl key={problem.title + i} className="flex flex-col gap-1">
+                                                <dl key={problem.title + i} className="flex flex-col gap-1 font-(family-name:--font-pretendard)">
                                                     <dt className="font-bold text-lg lg:text-xl">{problem.title}</dt>
-                                                    <dd className="lg:text-lg font-(family-name:--font-pretendard) text-[var(--color-gray-700)]">
+                                                    <dd className="lg:text-lg text-[var(--color-gray-700)]">
                                                         {problem.content}
                                                     </dd>
                                                 </dl>

@@ -29,7 +29,7 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
                 <div className="flex flex-col gap-[30vh]">
                     <ProjectDetailHeader project={project}/>
                     <ProjectDetailFeatureList project={project}/>
-                    <ProjectDetailGallery project={project}/>
+                    {/* <ProjectDetailGallery project={project}/> */}
                 </div>
             </section>
         </PageTransition>

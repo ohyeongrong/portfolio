@@ -55,7 +55,7 @@ export default function ProjectDetailHeader({ project }) {
                             </div>
                         </div>
                         <div className="flex-1/2 flex flex-col lg:flex-row gap-8">
-                            <div className="flex-2/3 lg:text-lg">
+                            <div className="flex-2/3 lg:text-lg font-(family-name:--font-pretendard)">
                                 <p>{ project.details.description }</p>
                             </div>
                             <div className="flex-1/3 flex justify-end gap-2">
