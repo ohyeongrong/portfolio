@@ -8,16 +8,34 @@ export interface HoverPosition {
     x: number;
     y: number;
 }
-export interface CursorContextValue<T = unknown | null> {
+
+// Badge 요소의 타입 정의 
+interface BadgeData {
+    id: string | number; 
+    content: string;
+}
+
+// hoverData가 'stack' 타입일 때의 구조 정의
+export interface StackHoverData {
+    id: string | number;
+    x: number;
+    y: number;
+    type: 'stack';
+    badges: BadgeData[];
+}
+export interface CursorContextValue {
     cursorType: MotionValue<CursorType>;
     hoverPosition: {
         x: MotionValue<number>;
         y: MotionValue<number>;
     };
-    hoverData: T; // 프로젝트에 맞게 구체적인 타입으로 변경 권장
+    // 💡 hoverData는 StackHoverData 또는 null 이어야 합니다.
+    hoverData: StackHoverData | null; 
+    
+    // setHoverData의 인자 타입도 수정
     setCursorType: (type: CursorType) => void;
     setHoverPosition: (position: HoverPosition) => void;
-    setHoverData: (data: T) => void;
+    setHoverData: (data: StackHoverData | null) => void; // 타입을 명확히 정의
 }
 
 const cursorType = motionValue<CursorType>('default');
@@ -33,7 +51,7 @@ const initialContextValue: CursorContextValue = {
         hoverX.set(x);
         hoverY.set(y);
     },
-    setHoverData: () => {}, 
+    setHoverData: (data: StackHoverData | null) => {}, 
 };
 
 export const CursorContext = createContext<CursorContextValue>(initialContextValue);
@@ -43,7 +61,7 @@ interface CursorProviderProps {
 
 export const CursorProvider = ({ children }: CursorProviderProps) => {
 
-  const [hoverData, setHoverData] = React.useState<unknown | null>(null);
+  const [hoverData, setHoverData] = React.useState<StackHoverData | null>(null);
 
   const value: CursorContextValue = {
     cursorType,
