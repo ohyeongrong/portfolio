@@ -5,11 +5,17 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useEffect, useRef } from 'react';
 gsap.registerPlugin(ScrollTrigger);
 
-export default function SectionTitle({ text }) {
+interface SectionTitleProps {
+    text: string;
+}
 
-    const textRef = useRef(null);
+export default function SectionTitle({ text }: SectionTitleProps) {
+
+    const textRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
+
+        if (!textRef.current) return;
 
         const filledTextSpans = gsap.utils.toArray(textRef.current.querySelectorAll('.section-text'));
 
