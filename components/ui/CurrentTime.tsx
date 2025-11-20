@@ -21,7 +21,7 @@ export default function CurrentTime() {
 
     const formatTime = (date: Date) => {
             
-            const dayOptions = { weekday: 'short' };
+            const dayOptions = { weekday: 'short' } as const;
             const day = date.toLocaleDateString('en-US', dayOptions);
             
             const timeOptions = {
@@ -29,7 +29,7 @@ export default function CurrentTime() {
                 minute: '2-digit',
                 second: '2-digit',
                 hour12: false,
-            };
+            } as const;
             const time = date.toLocaleTimeString('en-US', timeOptions);
             
             return `${day} ${time}`;
