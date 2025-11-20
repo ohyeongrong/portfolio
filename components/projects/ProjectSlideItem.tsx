@@ -3,23 +3,30 @@
 import Link from "next/link";
 import Image from 'next/image';
 import ProjectBadgeList from "@/components/ui/ProjectBadgeList";
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { useCursorContext } from '@/context/CursorContext';
+import { ProjectDataType } from "@/constants/PROJECT_DATA";
 
-const titleBadgeVariants = {
+
+const titleBadgeVariants: Variants = {
     initial: { opacity: 0, transition: { duration: 0.6, ease: 'easeInOut' } },
     hover: { opacity: 1, transition: { duration: 0.6, ease: 'easeInOut' } },
 };
 
-const imgVariants = {
+const imgVariants: Variants = {
     initial: { scale: 1, transition: { duration: 0.6, ease: 'easeInOut' } },
     hover: { scale: 1.1, transition: { duration: 0.6, ease: 'easeInOut' } }
     
 }
 
+interface ProjectSlideItemProps {
+    project: ProjectDataType;
+    i: number;
+}
+
 const MotionImage = motion(Image);
 
-export default function ProjectSlideItem({ project, i }){
+export default function ProjectSlideItem({ project, i }: ProjectSlideItemProps){
 
         const { setCursorType, setHoverPosition } = useCursorContext();
     
@@ -31,13 +38,12 @@ export default function ProjectSlideItem({ project, i }){
             setCursorType('default');
         }
     
-        function handleMouseMove(e) {
+        function handleMouseMove(e: React.MouseEvent) {
             setHoverPosition({ x: e.clientX, y: e.clientY });
         }
 
         function handleLinkClick() {
             setCursorType('default'); 
-            startLoading();
         }
 
 

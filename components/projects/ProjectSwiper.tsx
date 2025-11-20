@@ -7,8 +7,14 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-creative';
 import ProjectSlideItem from "./ProjectSlideItem";
+import { ProjectDataType } from "@/constants/PROJECT_DATA";
 
-export default function ProjectSwiper({ project }){
+
+interface ProjectSwiperProps {
+    project: ProjectDataType[]
+}
+
+export default function ProjectSwiper({ project }: ProjectSwiperProps){
 
     return (
             <Swiper
