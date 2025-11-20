@@ -7,10 +7,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useEffect, useRef } from 'react';
 gsap.registerPlugin(ScrollTrigger);
 
-export default function MarqueeText({ textContent }) {
+interface MarqueeTextProps {
+    textcontent: string;
+}
 
-    const marqueeTextRef = useRef(null);
-    const marqueeContentRef = useRef(null);
+export default function MarqueeText({ textContent }: MarqueeTextProps) {
+
+    const marqueeTextRef = useRef<HTMLDivElement | null>(null);
+    const marqueeContentRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
 
@@ -39,6 +43,10 @@ export default function MarqueeText({ textContent }) {
         // 무한 마키 애니메이션
         fadeIn.eventCallback('onComplete', () => {
             
+            if (!marqueeContentRef.current) {
+                return;
+            }
+
             const contentWidth = marqueeContentRef.current.offsetWidth;
             
             gsap.to(marqueeContentRef.current, {
