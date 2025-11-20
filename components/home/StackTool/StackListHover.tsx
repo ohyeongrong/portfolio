@@ -3,7 +3,7 @@
 import { motion, TargetAndTransition } from 'framer-motion';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { useCursorContext } from '@/context/CursorContext';
-import { StackDataType } from './StackTool';
+import { StackDataType, ToolItem } from './StackTool';
 
 const dtDefaultColor = 'var(--color-primary-dark)'; 
 const ddDefaultColor = 'var(--color-gray-500)';
@@ -23,7 +23,7 @@ export default function StackListHover({ stack, hoveredCategory, setHoveredCateg
 
     const [isBadgeVisible, setIsBadgeVisible] = useState(false);
 
-    const badgeGroups = (tools) => {
+    const badgeGroups = (tools: ToolItem[]) => {
         const groups = [];
 
         const dispalyTools = tools.slice(0, 4);
