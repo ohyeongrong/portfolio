@@ -5,10 +5,15 @@ import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useEffect, useRef } from 'react';
+import { ProjectDataType } from '@/constants/PROJECT_DATA';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function ProjectDetailGallery({ project }) {
+interface ProjectDetailGalleryProps {
+    project: ProjectDataType
+}
+
+export default function ProjectDetailGallery({ project }: ProjectDetailGalleryProps) {
 
     const imageWidths = ["w-[20vw]", "w-[30vw]", "w-[40vw]", "w-[20vw]"];
     

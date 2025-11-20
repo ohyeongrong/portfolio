@@ -10,10 +10,15 @@ import HoverRevealText from "@/components/utility/HoverRevealText";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef, useLayoutEffect } from "react";
+import { ProjectDataType } from "@/constants/PROJECT_DATA";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function ProjectDetailHeader({ project }) {
+interface ProjectDetailHeaderProps {
+    project: ProjectDataType
+}
+
+export default function ProjectDetailHeader({ project }: ProjectDetailHeaderProps) {
 
     const containerRef = useRef(null);
     const imageRef = useRef(null);
