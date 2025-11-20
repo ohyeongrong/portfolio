@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useMotionValue, useSpring } from 'framer-motion';
 
 export default function useMousePosition() {
@@ -15,7 +15,7 @@ export default function useMousePosition() {
     useEffect(() => {
         if (typeof window === 'undefined') return;
 
-        const handleMouseMove = (e) => {
+        const handleMouseMove = (e: MouseEvent) => {
             mouseX.set(e.clientX);
             mouseY.set(e.clientY);
         };
