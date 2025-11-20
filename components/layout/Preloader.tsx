@@ -7,7 +7,7 @@ import MarqueeText from '../ui/MarqueeText';
 
 export default function Preloader() {
     const { isLoading, finishLoading } = useLoading();
-    const preloaderRef = useRef(null);
+    const preloaderRef = useRef<HTMLDivElement | null>(null);
 
 useEffect(() => {
     if (isLoading) {
@@ -27,7 +27,9 @@ useEffect(() => {
             duration: 1.5,
             ease: 'power3.inOut',
             onComplete: () => {
-                preloaderRef.current.style.display = 'none';
+                if(preloaderRef.current) {
+                    preloaderRef.current.style.display = 'none';
+                }
             },
         });
     }
