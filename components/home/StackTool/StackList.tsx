@@ -6,29 +6,37 @@ import StackListHover from './StackListHover';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useEffect, useRef } from 'react';
+import { StackDataType } from './StackTool';
 gsap.registerPlugin(ScrollTrigger);
 
 
-export default function StackList({ stack }) {
+interface StackListProps {
+    stack: StackDataType[];
+}
+
+
+export default function StackList({ stack }: StackListProps) {
 
     const [hoveredCategory, setHoveredCategory] = useState(null)
 
-    const stackListRef = useRef(null);
+    const stackListRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
 
+        if (!stackListRef.current) return;
+
         const stakItems = gsap.utils.toArray(stackListRef.current.children);
 
-        stakItems.forEach((item, i) => {
+        stakItems.forEach(item => {
             gsap.fromTo(
-            item,
+            item as HTMLDivElement,
             { opacity: 0 },
             {
                 opacity: 1,
                 duration: 0.6,
                 ease: "power3.out",
                 scrollTrigger: {
-                    trigger: item,
+                    trigger: item as HTMLDivElement,
                     start: "top 80%",
                     // markers: true,
                 },

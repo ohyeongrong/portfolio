@@ -4,7 +4,18 @@ import MarqueeText from "../../ui/MarqueeText";
 import MatterVisual from "@/components/ui/MatterVisual";
 import StackList from "./StackList";
 
-const STACK_DATA = [
+export interface ToolItem {
+    id: string;
+    content: string;
+    color: string;
+}
+export interface StackDataType {
+    category: string;
+    description: string;
+    tools: ToolItem[];
+}
+
+const STACK_DATA: StackDataType[] = [
     { 
         category: 'Language', 
         description: '웹 구조와 스타일을 정의하고, 핵심 로직 및 타입 안전성을 구현합니다.',
