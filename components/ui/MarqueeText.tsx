@@ -4,11 +4,11 @@ import styles from './MarqueeText.module.css';
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useEffect, useRef } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 gsap.registerPlugin(ScrollTrigger);
 
 interface MarqueeTextProps {
-    textcontent: string;
+    textContent: ReactNode;
 }
 
 export default function MarqueeText({ textContent }: MarqueeTextProps) {
