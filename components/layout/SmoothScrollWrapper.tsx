@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useEffect, useLayoutEffect } from 'react';
+import React, { useRef, useEffect, useLayoutEffect, ReactNode } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
@@ -10,11 +10,15 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
-export default function SmoothScrollWrapper({ children }) {
-  const wrapperRef = useRef(null);
-  const contentRef = useRef(null);
-  const smootherRef = useRef(null);
-  const ctx = useRef(null);
+interface SmoothScrollWrapperProps {
+  children: ReactNode
+}
+
+export default function SmoothScrollWrapper({ children }: SmoothScrollWrapperProps) {
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const contentRef = useRef<HTMLDivElement | null>(null);
+  const smootherRef = useRef<ScrollSmoother | null>(null);
+  const ctx = useRef<gsap.Context | null>(null);
   const pathname = usePathname();
 
   // 1) 한 번만: 브라우저의 자동 스크롤 복원을 끄기
@@ -51,14 +55,15 @@ export default function SmoothScrollWrapper({ children }) {
       });
     }, wrapperRef);
 
-    return () => {
-      ctx.current.revert();
+return () => {
+    ctx.current?.revert(); 
 
-      if (smootherRef.current) {
-        try { smootherRef.current.kill(); } catch(e) {}
+    if (smootherRef.current) {
+        try { smootherRef.current.kill(); } 
+        catch {} 
         smootherRef.current = null;
-      }
-    };
+    }
+};
   }, []);
 
   // pathname(경로) 변경 시 항상 즉시 스크롤 탑으로 이동
