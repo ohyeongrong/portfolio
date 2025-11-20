@@ -1,9 +1,10 @@
 
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, Transition } from 'framer-motion';
+import { ReactNode } from 'react';
 
-const transition = { type: 'spring', stiffness: 300, damping: 35, mass: 0.5 };
+const transition: Transition = { type: 'spring', stiffness: 300, damping: 35, mass: 0.5 };
 
 const variants = {
     // 텍스트 (children)
@@ -18,8 +19,13 @@ const variants = {
     }
 };
 
+interface HoverRevealTextProps {
+    children: ReactNode;
+    hoverContent: ReactNode;
+}
 
-export default function HoverRevealText({ children, hoverContent }) {
+
+export default function HoverRevealText({ children, hoverContent }: HoverRevealTextProps) {
     
     return (
         <motion.div
