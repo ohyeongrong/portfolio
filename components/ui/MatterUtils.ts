@@ -22,20 +22,8 @@
 // ----------------------------------------------------
 // 타입정의
 // ----------------------------------------------------
-// 1. Matter.js 모듈에서 필요한 멤버들만 정의
-export interface IMatter {
-    Engine: { create: () => any; clear: (engine: any) => void; };
-    Render: { create: (options: any) => any; run: (render: any) => void; stop: (render: any) => void; };
-    Runner: { create: () => any; run: (runner: any, engine: any) => void; stop: (runner: any) => void; };
-    World: { add: (world: any, bodies: any | any[]) => void; clear: (world: any, keepStatic: boolean) => void; };
-    Bodies: {
-        // Bodies의 반환 값과 옵션 타입을 Matter. 접두사 대신 any로 대체하여 IMatter의 요구사항을 최소화합니다.
-        rectangle: (x: number, y: number, width: number, height: number, options?: any) => any;
-        circle: (x: number, y: number, radius: number, options?: any) => any;
-    };
-}
 
-// 2. dimensions 객체의 구조
+// dimensions 객체의 구조
     export interface IDimensions {
         width: number;
         height: number;
@@ -44,7 +32,7 @@ export interface IMatter {
 // ----------------------------------------------------
 // createBadgeBodies (Hero에서 사용)
 // ----------------------------------------------------
-    export const createBadgeBodies = (Matter: IMatter, dimensions: IDimensions): Matter.Body[] => {
+    export const createBadgeBodies = (Matter: typeof import('matter-js'), dimensions: IDimensions): Matter.Body[]=> {
     const { Bodies } = Matter;
     const centerX = dimensions.width / 2;
     const startY = -50;
@@ -76,7 +64,7 @@ export interface IMatter {
         },
         };
 
-        const body =
+        const body: Matter.Body =
         i <= 3
             ? Bodies.circle(centerX, startY, 46 * scale, options)
             : Bodies.rectangle(
@@ -96,7 +84,7 @@ export interface IMatter {
 // ----------------------------------------------------
 // createEllipseBodies (Stack 섹션에서 사용)
 // ----------------------------------------------------
-    export const createEllipseBodies = (Matter: IMatter, dimensions: IDimensions): Matter.Body[] => {
+    export const createEllipseBodies = (Matter: typeof import('matter-js'), dimensions: IDimensions): Matter.Body[] => {
     const { Bodies } = Matter;
     const centerX = dimensions.width / 2;
     const startY = -50;
@@ -121,7 +109,7 @@ export interface IMatter {
         { width: 277, height: 75, texture: '/icons/stacktool-visual-badge-16.svg', radius: 37 },
     ];
 
-    const bodies = ellipseData.map((data) => {
+    const bodies: Matter.Body[] = ellipseData.map((data) => {
         const { width, height, texture, radius } = data;
         const spawnRange = dimensions.width * 0.7;
         const minX = centerX - spawnRange / 2;
