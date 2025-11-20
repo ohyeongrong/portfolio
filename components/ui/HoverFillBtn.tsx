@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 import { IconName } from './Icon'; 
 interface HoverFillBtnProps {
-    content: string;
+    content?: string;
     sizeClassName: string;
     iconName?: IconName;          
     iconSize?: number;
