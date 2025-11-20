@@ -1,6 +1,11 @@
 import Badge from "./Badge"
 
-export default function ProjectBadgeList({categories, tools}) {
+interface ProjectBadgeListProps {
+    categories: string[];
+    tools: string[];
+}
+
+export default function ProjectBadgeList({categories, tools}: ProjectBadgeListProps) {
     return (
             <>
                 <ul className="flex flex-wrap items-center gap-0.5">
