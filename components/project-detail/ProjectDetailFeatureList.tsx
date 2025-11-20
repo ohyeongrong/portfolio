@@ -7,11 +7,16 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useEffect, useRef } from 'react';
 import SectionTitle from '../ui/SectionTitle';
+import { ProjectDataType } from '@/constants/PROJECT_DATA';
 
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function ProjectDetailFeatureList({ project }) {
+interface ProjectDetailFeatureListProps {
+    project: ProjectDataType
+}
+
+export default function ProjectDetailFeatureList({ project }: ProjectDetailFeatureListProps) {
 
     const imgRefs = useRef<HTMLElement[]>([])
     const contentRefs = useRef<HTMLElement[]>([])
