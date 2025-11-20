@@ -17,7 +17,7 @@ interface StackListProps {
 
 export default function StackList({ stack }: StackListProps) {
 
-    const [hoveredCategory, setHoveredCategory] = useState(null)
+    const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
 
     const stackListRef = useRef<HTMLDivElement>(null);
 

@@ -1,9 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { motion, TargetAndTransition } from 'framer-motion';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { useCursorContext } from '@/context/CursorContext';
-
+import { StackDataType } from './StackTool';
 
 const dtDefaultColor = 'var(--color-primary-dark)'; 
 const ddDefaultColor = 'var(--color-gray-500)';
@@ -11,7 +11,13 @@ const dimmedColor = 'var(--color-gray-200)';
 const defaultOpacity = 1;
 const dimmedOpacity = 0.6;
 
-export default function StackListHover({ stack, hoveredCategory, setHoveredCategory }) {
+interface StackListHoverProps {
+    stack: StackDataType;
+    hoveredCategory: string | null;
+    setHoveredCategory: Dispatch<SetStateAction<string | null>>;
+}
+
+export default function StackListHover({ stack, hoveredCategory, setHoveredCategory }: StackListHoverProps) {
 
     const { setCursorType, setHoverData } = useCursorContext();
 
@@ -42,7 +48,7 @@ export default function StackListHover({ stack, hoveredCategory, setHoveredCateg
         return groups;
     }
 
-    function handleMouseEnter(e) {
+    function handleMouseEnter(e: React.MouseEvent) {
         setHoveredCategory(stack.category);
         setCursorType('hidden');
 
@@ -63,21 +69,21 @@ export default function StackListHover({ stack, hoveredCategory, setHoveredCateg
         setIsBadgeVisible(false);
     }
 
-    function handleMouseMove(e) {
-        setHoverData(prev => prev ? { ...prev, x: e.clientX, y: e.clientY } : null);
+    function handleMouseMove(e: React.MouseEvent) {
+        setHoverData((prev) => prev ? { ...prev, x: e.clientX, y: e.clientY } : null);
     }
 
     const isSelfHovered = hoveredCategory === stack.category;
     const isOtherHovered = hoveredCategory !== null && !isSelfHovered;
 
 
-    const dtColorAnimate = {
+    const dtColorAnimate: TargetAndTransition = {
         color: isOtherHovered ? dimmedColor : dtDefaultColor,
         opacity: isOtherHovered ? dimmedOpacity : defaultOpacity,
         transition: { duration: 0.6, ease: "easeInOut" }
     }
 
-    const ddColorAnimate = {
+    const ddColorAnimate: TargetAndTransition = {
         color: isOtherHovered ? dimmedColor : ddDefaultColor,
         opacity: isOtherHovered ? dimmedOpacity : defaultOpacity,
         transition: { duration: 0.6, ease: "easeInOut" }

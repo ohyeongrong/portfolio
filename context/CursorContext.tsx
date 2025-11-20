@@ -1,5 +1,5 @@
 'use client';
-import React, { createContext, useContext, ReactNode } from 'react';
+import React, { createContext, useContext, ReactNode, SetStateAction, Dispatch } from 'react';
 import { motionValue, MotionValue } from 'framer-motion';
 
 export type CursorType = 'default' | 'view' | 'badge' | string;
@@ -35,7 +35,7 @@ export interface CursorContextValue {
     // setHoverData의 인자 타입도 수정
     setCursorType: (type: CursorType) => void;
     setHoverPosition: (position: HoverPosition) => void;
-    setHoverData: (data: StackHoverData | null) => void; // 타입을 명확히 정의
+    setHoverData: Dispatch<SetStateAction<StackHoverData | null>>;
 }
 
 const cursorType = motionValue<CursorType>('default');
@@ -51,7 +51,7 @@ const initialContextValue: CursorContextValue = {
         hoverX.set(x);
         hoverY.set(y);
     },
-    setHoverData: (data: StackHoverData | null) => {}, 
+    setHoverData: (data) => {},
 };
 
 export const CursorContext = createContext<CursorContextValue>(initialContextValue);
