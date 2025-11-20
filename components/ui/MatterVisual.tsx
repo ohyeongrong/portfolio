@@ -2,11 +2,16 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Matter from 'matter-js';
-import { createBadgeBodies, createEllipseBodies } from './MatterUtils';
+import { createBadgeBodies, createEllipseBodies, IDimensions } from './MatterUtils';
 
 // ----------------------------------------------------
 // matterUtils
 // ----------------------------------------------------
+
+// Props 인터페이스 정의
+interface MatterVisualProps {
+    type?: 'badge' | 'ellipse';
+}
 const bodyCreators = {
   badge: createBadgeBodies,
   ellipse: createEllipseBodies,
@@ -15,9 +20,9 @@ const bodyCreators = {
 // ----------------------------------------------------
 // matter visual
 // ----------------------------------------------------
-const MatterVisual = ({ type = 'badge' }) => {
-  const sceneRef = useRef(null);
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+const MatterVisual = ({ type = 'badge' }: MatterVisualProps) => {
+  const sceneRef = useRef<HTMLDivElement | null>(null);
+  const [dimensions, setDimensions] = useState<IDimensions>({ width: 0, height: 0 });
   const [isCanvasInView, setIsCanvasInView] = useState(false);
 
   // 컨테이너 크기 계산
@@ -40,7 +45,7 @@ const MatterVisual = ({ type = 'badge' }) => {
     const el = sceneRef.current;
     if (!el) return;
 
-    const observer = new IntersectionObserver(
+    const observer: IntersectionObserver = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsCanvasInView(true);
@@ -57,7 +62,7 @@ const MatterVisual = ({ type = 'badge' }) => {
   // Matter.js 초기화
   useEffect(() => {
     const { Engine, Render, World, Bodies, Runner } = Matter;
-    if (!isCanvasInView || dimensions.width === 0 || dimensions.height === 0) return;
+    if (!isCanvasInView || dimensions.width === 0 || dimensions.height === 0 || !sceneRef.current) return;
 
     // 선택된 body 생성
     const createBodiesFn = bodyCreators[type] || createBadgeBodies;
@@ -76,7 +81,7 @@ const MatterVisual = ({ type = 'badge' }) => {
         background: 'transparent',
         wireframes: false,
         pixelRatio: window.devicePixelRatio > 1 ? 1.5 : 1,
-        antialias: false,
+        // antialias: false,
       },
     });
 
