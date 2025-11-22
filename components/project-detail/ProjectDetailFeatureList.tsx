@@ -42,7 +42,7 @@ export default function ProjectDetailFeatureList({ project }: ProjectDetailFeatu
                     opacity: 1,
                     xPercent: 0,
                     scale: 1,
-                    duration: 1.2,
+                    duration: 1,
                     ease: 'power3.out',
                     scrollTrigger: {
                         trigger: triggerElement,
@@ -61,7 +61,7 @@ export default function ProjectDetailFeatureList({ project }: ProjectDetailFeatu
                 {
                     opacity: 1,
                     y: 0,
-                    duration: 1.2,
+                    duration: 1,
                     delay: 0.2,
                     ease: 'power3.out',
                     scrollTrigger: {
@@ -80,7 +80,7 @@ export default function ProjectDetailFeatureList({ project }: ProjectDetailFeatu
                 { scale: 0,},
                 {
                     scale: 1,
-                    stagger: 0.1,
+                    stagger: 0.3,
                     ease: 'bounce.inOut',
                     scrollTrigger: {
                         trigger: triggerElement,

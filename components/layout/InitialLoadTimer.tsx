@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useLoading } from '@/context/LoadingContext';
 
 // 최소 로딩 시간
-const MIN_LOAD_TIME_MS = 1500; 
+const MIN_LOAD_TIME_MS = 1200; 
 
 export default function InitialLoadTimer() {
   const { finishLoading } = useLoading();

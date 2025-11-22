@@ -47,8 +47,8 @@ export default function ProjectDetailHeader({ project }: ProjectDetailHeaderProp
     }, []);
 
     return (
-            <div ref={containerRef} className="w-full h-dvh px-6 flex flex-col">
-                <div className="flex flex-col gap-4 h-[50vh] lg:h-[25vh]">
+            <div ref={containerRef} className="w-full min-h-dvh px-6 flex flex-col gap-2">
+                <div className="flex flex-col gap-4 min-h-[50vh] lg:min-h-[25vh]">
                     <div className="text-[clamp(0.875rem,0.846rem+0.128vw,1rem)]">
                         <time dateTime={ project.duration }>{ project.duration }</time>
                     </div>
@@ -78,7 +78,7 @@ export default function ProjectDetailHeader({ project }: ProjectDetailHeaderProp
                         </div>
                     </div>
                 </div>
-                <figure ref={imageRef} className="relative w-full h-[45vh] lg:h-[70vh]">
+                <figure ref={imageRef} className="relative w-full aspect-[16/6]">
                     <Image className="object-cover rounded-2xl" src={project.details.detailImages.mainImages.src} alt={project.details.detailImages.mainImages.caption} fill/>
                 </figure>
             </div>

@@ -6,6 +6,7 @@ import ProjectBadgeList from "@/components/ui/ProjectBadgeList";
 import { motion, Variants } from 'framer-motion';
 import { useCursorContext } from '@/context/CursorContext';
 import { ProjectDataType } from "@/constants/PROJECT_DATA";
+import { useLoading } from "@/context/LoadingContext";
 
 
 const titleBadgeVariants: Variants = {
@@ -29,6 +30,7 @@ const MotionImage = motion(Image);
 export default function ProjectSlideItem({ project, i }: ProjectSlideItemProps){
 
         const { setCursorType, setHoverPosition } = useCursorContext();
+        const { startLoading } = useLoading();
     
         function handleMouseEnter() {
             setCursorType('view');
@@ -44,6 +46,7 @@ export default function ProjectSlideItem({ project, i }: ProjectSlideItemProps){
 
         function handleLinkClick() {
             setCursorType('default'); 
+            startLoading();
         }
 
 

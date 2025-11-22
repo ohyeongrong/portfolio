@@ -33,12 +33,13 @@ export default function AnimatedText() {
         ctx.current = gsap.context(() => {
             
             const filledTextSpans = gsap.utils.toArray(textRef.current!.querySelectorAll('.filled-text'));
-            
+            const el = textRef.current;
+
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: textRef.current,
-                    start: 'top 10%',
-                    end: '+=300%',
+                    start: 'top top',
+                    end:  () => "+=" + el.offsetHeight * 2.5,
                     pin: true,       
                     scrub: 1,   
                 },
@@ -73,8 +74,9 @@ export default function AnimatedText() {
             <div 
                 ref={textRef}
                 className="
-                    z-10
-                    text-[clamp(2rem,0.267rem+7.704vw,7.2rem)] tracking-tight leading-none text-center font-semibold
+                    z-10 w-full
+                    text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl
+                    tracking-tight leading-none text-center font-semibold
                     flex flex-col gap-4 sm:gap-6 md:gap-7 lg:gap-8 py-16 md:py-24 lg:py-32 
                     items-center justify-center
                 "

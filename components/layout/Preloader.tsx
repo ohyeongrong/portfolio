@@ -24,7 +24,7 @@ useEffect(() => {
         gsap.to(preloaderRef.current, {
             clipPath: 'circle(0% at 50% 50%)',
             opacity: 1, 
-            duration: 1.5,
+            duration: 1.2,
             ease: 'power3.inOut',
             onComplete: () => {
                 if(preloaderRef.current) {
