@@ -14,7 +14,7 @@ interface FeatureCodeViewProps {
 export default function FeatureCodeView({ feat }: FeatureCodeViewProps) {
 
     const [codeShow, setCodeShow] = useState(false);
-    const [featId, setFeatId] = useState(null);
+    const [featId, setFeatId] = useState<string | null>(null);
 
     useEffect(()=> {
         setCodeShow(false);
