@@ -33,7 +33,7 @@ export default function AnimatedText() {
         ctx.current = gsap.context(() => {
             
             const filledTextSpans = gsap.utils.toArray(textRef.current!.querySelectorAll('.filled-text'));
-            const el = textRef.current;
+            const el = textRef.current as HTMLDivElement;
 
             const tl = gsap.timeline({
                 scrollTrigger: {
