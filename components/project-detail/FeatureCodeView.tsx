@@ -5,9 +5,13 @@ import { useEffect, useState } from 'react';
 import TextLink from '../ui/TextLink';
 import HoverRevealText from '../utility/HoverRevealText';
 import { AnimatePresence, motion, Variants } from 'framer-motion';
+import { KeyFeature } from '@/constants/PROJECT_DATA';
 
+interface FeatureCodeViewProps {
+    feat: KeyFeature
+}
 
-export default function FeatureCodeView({ feat }) {
+export default function FeatureCodeView({ feat }: FeatureCodeViewProps) {
 
     const [codeShow, setCodeShow] = useState(false);
     const [featId, setFeatId] = useState(null);
