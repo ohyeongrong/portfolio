@@ -8,6 +8,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useEffect, useRef } from 'react';
 import SectionTitle from '../ui/SectionTitle';
 import { ProjectDataType } from '@/constants/PROJECT_DATA';
+import FeatureCodeView from './FeatureCodeView';
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -42,13 +43,13 @@ export default function ProjectDetailFeatureList({ project }: ProjectDetailFeatu
                     opacity: 1,
                     xPercent: 0,
                     scale: 1,
-                    duration: 1,
+                    duration: 0.8,
                     ease: 'power3.out',
                     scrollTrigger: {
                         trigger: triggerElement,
                         start: 'top 80%',
                         toggleActions: 'play none none reverse',
-                        scrub: 1,
+                        scrub: true,
                     }
                 }
             );
@@ -61,14 +62,13 @@ export default function ProjectDetailFeatureList({ project }: ProjectDetailFeatu
                 {
                     opacity: 1,
                     y: 0,
-                    duration: 1,
-                    delay: 0.2,
+                    duration: 0.8,
                     ease: 'power3.out',
                     scrollTrigger: {
                         trigger: triggerElement,
                         start: 'top 80%',
                         toggleActions: 'play none none reverse',
-                        scrub: 1,
+                        scrub: true,
                     }
                 }
             );
@@ -109,12 +109,11 @@ export default function ProjectDetailFeatureList({ project }: ProjectDetailFeatu
                         ? "md:col-start-3 md:col-span-4 md:order-1" // 홀수: 왼쪽 배치
                         : "md:col-start-7 md:col-span-4 md:order-2" // 짝수: 오른쪽 배치
 
-                    
                     const ContentBlock = ( 
                         <div 
                             className={`${ContentClasses} order-2`} 
                             ref={el => {if (el) contentRefs.current[i] = el}}>
-                            <div className="flex flex-col gap-8">
+                            <div className="flex flex-col gap-8 relative">
                                 <ul className="flex gap-0.5" ref={el => {if (el) badgeRefs.current[i] = el}}>
                                     {
                                         feat.toolsUsed.map((tool, i) =>
@@ -132,6 +131,7 @@ export default function ProjectDetailFeatureList({ project }: ProjectDetailFeatu
                                         { feat.content }
                                     </dd>
                                 </dl>
+                                <FeatureCodeView feat={feat}/>
                                 {
                                     feat.problemSolving &&
                                     <>
