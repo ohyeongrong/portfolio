@@ -533,7 +533,7 @@ export const PROJECT_DATA: ProjectDataType[] = [
 
         // 2. 썸네일 정보
         thumbnail: '/images/projects/pokemon-thumb-img.webp', // 썸네일 이미지 경로
-        isLatest: true,
+        isLatest: false,
         
         // 3. 외부 링크
         githubUrl: 'https://github.com/ohyeongrong/pokemon-color-palette',
@@ -684,7 +684,7 @@ export const PROJECT_DATA: ProjectDataType[] = [
 
         // 2. 썸네일 정보
         thumbnail: '/images/projects/shoppingmall-thumb-img.webp',
-        isLatest: true,
+        isLatest: false,
         
         // 3. 외부 링크
         githubUrl: 'https://github.com/ohyeongrong/swim-shopping-mall',
@@ -804,7 +804,7 @@ export const PROJECT_DATA: ProjectDataType[] = [
 
         // 2. 썸네일 정보
         thumbnail: '/images/projects/portfolio-thumb-img.webp',
-        isLatest: true,
+        isLatest: false,
         
         // 3. 외부 링크
         githubUrl: '',
