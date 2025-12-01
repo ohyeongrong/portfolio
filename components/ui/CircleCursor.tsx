@@ -40,7 +40,7 @@ export default function CircleCursor() {
 
     return (
         <motion.div
-        className="fixed top-0 left-0 rounded-full pointer-events-none z-[9999] hidden md:block cursor"
+        className="fixed top-0 left-0 rounded-full pointer-events-none z-[9999] hidden lg:block cursor"
         style={{
             x: springX,
             y: springY,

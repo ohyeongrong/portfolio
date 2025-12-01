@@ -479,7 +479,7 @@ export const PROJECT_DATA: ProjectDataType[] = [
                     content: 'GSAP ScrollTrigger를 활용하여 스크롤 위치에 반응하는 동적인 애니메이션을 구현했습니다. ScrollSmoother를 적용하여 페이지 스크롤의 부드러움을 극대화하여 시각적 몰입도를 높였습니다.',
                     toolsUsed: ['GSAP', 'JavaScript'], 
                     featureImage: { 
-                        src: '/images/projects/corp-web-feature-01-img.webp', 
+                        src: '/images/projects/corp-web-feature-01-img.gif', 
                         caption: 'GSAP 기반의 스크롤 및 동적 인터랙션 구현',
                     },
                 },
