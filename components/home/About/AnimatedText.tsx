@@ -39,7 +39,7 @@ export default function AnimatedText() {
                 scrollTrigger: {
                     trigger: textRef.current,
                     start: 'top top',
-                    end:  () => "+=" + el.offsetHeight * 3,
+                    end: "+=250%",
                     pin: true,       
                     scrub: 1,   
                 },
